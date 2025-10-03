@@ -6,7 +6,19 @@ This list groups big‑picture Phase I ideas by AIS Focus Area, leveraging Inter
 
 ## Focus Area 1 — Edge Computing & Algorithms
 
-1) POLARIS‑trained On‑Board RL Mission Autonomy (Power/Sensing/Downlink)
+1) Onboard Threat and Maneuver Classification with Safe RL “Action Broker”
+- Concept: Fuse kinematic + RF cues into an onboard classifier; couple to a safe RL “action broker” selecting evasive/observe/hold actions with constraints and explainability for rules‑of‑engagement and debris minimization. [R1][R2]
+- Phase I: data model + synthetic generation; mobile‑friendly models; action broker with explicit constraint layer; verification harness and counterfactual/explanation logging. [R3]
+- Metrics: classification F1>0.9 on synthetic adversary maneuvers; constraint violation ~0; operator workload proxy −25%. [R2][R3]
+- Roles: IA — models, broker, verification; COSMIAC — compute footprint study, secure boot/root‑of‑trust feasibility. [R5][R6]
+
+2) Data Poisoning and OOD Resilience on the Edge
+- Concept: Onboard triage with OOD detectors, adversarial hardening, and sensor cross‑checks; memory‑safe language prototypes and zero‑trust enclaves for model execution and updates. [R3][R5]
+- Phase I: evaluate OOD/adversarial defenses under SWaP; prototype enclave execution path; certifiable Space MLOps update concept for models. [R5][R6]
+- Metrics: AUC>0.9 under poisoning; enclave overhead <20% compute; recovery time <10 s; secure update roll‑back path. [R5]
+- Roles: IA — defenses, enclave pipeline; COSMIAC — trust anchors, key mgmt, firmware chain‑of‑custody. [R5]
+
+3) POLARIS‑trained On‑Board RL Mission Autonomy (Power/Sensing/Downlink)
 - Concept: Extend IA’s POLARIS RL training (Basilisk + Gymnasium) to GEO/XGEO/cislunar regimes and deploy an onboard policy that jointly optimizes solar charging, sensor tasking, tip‑and‑cue, and comms downlink while respecting safety/ITAR constraints. [R1][R2][R3]
 - Phase I activities/deliverables:
   - Basilisk environment extensions (GEO→cislunar), synthetic scenarios, and domain randomization for comms‑denied ops. [R3]
@@ -16,29 +28,17 @@ This list groups big‑picture Phase I ideas by AIS Focus Area, leveraging Inter
 - Success signals/metrics: >50% reduction in decision latency vs. ground‑loop baseline; energy margin/downlink throughput gains; safe‑action rate >99.9%; robust to comms loss. [R1][R6]
 - Roles: IA — RL/POLARIS models, safety shields, M&S; COSMIAC — prototype compute board selection (rad‑tolerant SoC/FPGA), HIL plan, thermal/power envelope. [R5]
 
-2) Onboard Threat and Maneuver Classification with Safe RL “Action Broker”
-- Concept: Fuse kinematic + RF cues into an onboard classifier; couple to a safe RL “action broker” selecting evasive/observe/hold actions with constraints and explainability for rules‑of‑engagement and debris minimization. [R1][R2]
-- Phase I: data model + synthetic generation; mobile‑friendly models; action broker with explicit constraint layer; verification harness and counterfactual/explanation logging. [R3]
-- Metrics: classification F1>0.9 on synthetic adversary maneuvers; constraint violation ~0; operator workload proxy −25%. [R2][R3]
-- Roles: IA — models, broker, verification; COSMIAC — compute footprint study, secure boot/root‑of‑trust feasibility. [R5][R6]
-
-3) Data Poisoning and OOD Resilience on the Edge
-- Concept: Onboard triage with OOD detectors, adversarial hardening, and sensor cross‑checks; memory‑safe language prototypes and zero‑trust enclaves for model execution and updates. [R3][R5]
-- Phase I: evaluate OOD/adversarial defenses under SWaP; prototype enclave execution path; certifiable Space MLOps update concept for models. [R5][R6]
-- Metrics: AUC>0.9 under poisoning; enclave overhead <20% compute; recovery time <10 s; secure update roll‑back path. [R5]
-- Roles: IA — defenses, enclave pipeline; COSMIAC — trust anchors, key mgmt, firmware chain‑of‑custody. [R5]
-
-4) Neuromorphic/FPGA Edge Inference Feasibility for Anomaly Detection
-- Concept: Investigate spiking NN or FPGA‑accelerated anomaly detectors for ultra‑low‑power custody maintenance with radiation considerations. [R5][R6]
-- Phase I: port a lightweight anomaly kernel to FPGA/spiking sim; compare watts/inference vs. CPU/GPU; radiation effects review and mitigation posture drawing on COSMIAC campaigns. [R5]
-- Metrics: 3–10× energy/inference; accuracy within 5% of CPU ref; draft radiation risk/mitigation plan. [R5]
-- Roles: IA — models/algorithms; COSMIAC — FPGA/neuromorphic feasibility, radiation test plan.
-
-5) Cislunar Visualization + RL Training Toolchain
+4) Cislunar Visualization + RL Training Toolchain
 - Concept: Produce cislunar‑grade visualizations and simulators tied to POLARIS for planning, replay, and showcase; include decision‑timeline overlays and ROE constraints. [R1][R2][R3]
 - Phase I: visualization tool, scenario pack, and CONOPS storyboard; “what‑if” latency/workload analysis hooks; exportable figures for the Showcase. [R2]
 - Metrics: end‑to‑end sim‑to‑policy loop; stakeholder usability ≥4/5; clear traceability to USSF objectives. [R2]
 - Roles: IA — tools; COSMIAC — scenario realism review, ops constraints.
+
+5) Neuromorphic/FPGA Edge Inference Feasibility for Anomaly Detection
+- Concept: Investigate spiking NN or FPGA‑accelerated anomaly detectors for ultra‑low‑power custody maintenance with radiation considerations. [R5][R6]
+- Phase I: port a lightweight anomaly kernel to FPGA/spiking sim; compare watts/inference vs. CPU/GPU; radiation effects review and mitigation posture drawing on COSMIAC campaigns. [R5]
+- Metrics: 3–10× energy/inference; accuracy within 5% of CPU ref; draft radiation risk/mitigation plan. [R5]
+- Roles: IA — models/algorithms; COSMIAC — FPGA/neuromorphic feasibility, radiation test plan.
 
 Ref‑informed priorities: emphasize comms‑denied autonomy and debris‑minimizing actions (R1), doctrinal alignment to USSF decision advantage (R2), and trustworthy MLOps + V&V for safety‑critical edge AI (R3,R5,R6).
 
@@ -76,23 +76,23 @@ Ref‑informed priorities: multi‑sensor fusion for SDA and attribution (R2,R3)
 
 ## Focus Area 3 — Bus Design
 
-1) Modular Autonomy Manager for Power/Thermal/Compute Load‑Shedding
-- Concept: Software “vehicle manager” orchestrating compute throttling, sensor duty cycling, thermal protection by mission phase and threat posture; integrates with Edge policies. [R5][R6]
-- Phase I: architecture, state machine + policy hooks, thermal/power budget models; hardware abstraction layer. [R5]
-- Metrics: thermal violations ≥80% reduction; mission utility loss <5%; autonomy safety incidents = 0 in sim.
-- Roles: IA — autonomy stack; COSMIAC — bus interfaces, thermal/power models, component selection.
-
-2) Safe Collision Avoidance and Evasive Maneuver Executive
+1) Safe Collision Avoidance and Evasive Maneuver Executive
 - Concept: Guidance executive integrating conjunction alerts with safe maneuver templates; leverage MPC‑style controllers for constraint‑aware RPOD/evasion. [R4]
 - Phase I: maneuver library; verification harness; delta‑V budget trade space; debris‑minimizing ROE. [R1][R4]
 - Metrics: 0 constraint violations; decision latency <5 s; custody maintained ≥80% during avoidance.
 - Roles: IA — algorithms/verification; COSMIAC — propulsion/ADCS constraints and actuator models.
 
-3) Rad‑Tolerant Compute Stack with Root‑of‑Trust and Memory‑Safe Runtime
+2) Rad‑Tolerant Compute Stack with Root‑of‑Trust and Memory‑Safe Runtime
 - Concept: COSMIAC prototypes rad‑tolerant compute (RISC‑V/FPGA SoC + TMR/ECC) with secure boot; IA provides memory‑safe runtime (e.g., Rust/WASM) and enclave execution path. [R5]
 - Phase I: block diagram, parts/availability, SEU/SET mitigation approach, secure boot chain; sample micro‑services; Space MLOps update plan. [R5][R6]
 - Metrics: boot‑to‑mission <10 s; SEU tolerance plan; enclave perf overhead <20%.
 - Roles: COSMIAC — hardware concept; IA — runtime + app containerization.
+
+3) Modular Autonomy Manager for Power/Thermal/Compute Load‑Shedding
+- Concept: Software “vehicle manager” orchestrating compute throttling, sensor duty cycling, thermal protection by mission phase and threat posture; integrates with Edge policies. [R5][R6]
+- Phase I: architecture, state machine + policy hooks, thermal/power budget models; hardware abstraction layer. [R5]
+- Metrics: thermal violations ≥80% reduction; mission utility loss <5%; autonomy safety incidents = 0 in sim.
+- Roles: IA — autonomy stack; COSMIAC — bus interfaces, thermal/power models, component selection.
 
 4) High Delta‑V Mission Profile Study for Rapid Evasion/Retasking
 - Concept: Co‑design autonomy policies with high‑delta‑V envelopes; quantify gains in threat response for co‑orbital harassment and proximity threats. [R1][R2]
