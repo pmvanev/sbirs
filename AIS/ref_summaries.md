@@ -23,3 +23,34 @@
 6. Lockheed Martin: "AI/ML Mission Processing Onboard Satellites" (AIAA paper, 2022). PDF: https://www.lockheedmartin.com/content/dam/lockheed-martin/space/documents/ai-ml/PIRA-aiaa-6.2022-1472-aiml-mission-processing-onboard-satellites-paper.pdf
    - Summary: Describes on-board mission processing architectures and pipelines for AI/ML on satellites, including SWaP-aware design patterns, data handling/compression, scheduling, and heterogeneous compute (CPU/GPU/FPGA/SoC). Includes mission use cases (e.g., onboard detection/classification) and performance considerations.
    - Relevance to AIS: Demonstrates feasibility and design patterns for achieving AIS objectives (e.g., >50% kill-chain latency reduction) with onboard inference. Informs hardware/software partitioning, toolchains, and update strategies for resilient autonomy under space constraints.
+
+
+## COSMIAC Publications & Projects (C#)
+
+- [C1] COSMIAC Positioning, Navigation, and Timing (PNT) Project Page — ORDWG/SDR receivers, ML-based threat detection/mitigation, GNSS signal dataset, and multi-target model deployment options (FPGA, GPU, ARM, TPU, VPU).
+  - Link: https://cosmiac.unm.edu/projects/pnt.html
+  - Relevance: Supports onboard threat analytics, OOD/adversarial resilience, and heterogeneous/FPGA deployment for edge AI; informs Space MLOps/dataset curation.
+
+- [C2] Morales Chacon, Clarizza (2023). “Design, Optimization, and Hardware Deployment of a Deep Learning Model for GPS Spoofing Detection using GNSS Satellite Receiver Protocol Data.” UNM ECE MS Thesis. Committee includes Dr. James Aarestad and Mr. Brian Zufelt.
+  - Link: https://digitalrepository.unm.edu/ece_etds/626/
+  - Relevance: Demonstrates GNSS spoofing detection via ML and real-time deployment on Xilinx Kria KV260 FPGA; aligns with FPGA-resident inference and PNT resilience.
+
+- [C3] ION Joint Navigation Conference (JNC) — Sessions/Tutorials featuring COSMIAC’s Andrew Cochrane and Dr. James Aarestad on spoofing detection and ML for PNT.
+  - Links: Program reference (2021): https://www.ion.org/jnc/upload/JNC21-Onsite.pdf | Tutorials: https://www.ion.org/jnc/tutorials.cfm
+  - Relevance: Establishes COSMIAC leadership in GNSS interference/spoofing detection and ML-based PNT analytics relevant to onboard threat classification and resilience.
+
+- [C4] SPARC‑1 (6U CubeSat) — On‑orbit Agile Space Radio (reconfigurable transceiver) and SSA camera; launched 2019.
+  - Link: https://cosmiac.unm.edu/projects/sparc-1.html
+  - Relevance: Heritage for software‑defined, reconfigurable RF payloads and on‑sensor/edge preprocessing concepts.
+
+- [C5] Trailblazer / Space Plug‑and‑Play Avionics (SPA) — Modular avionics and rapid integration for CubeSats (Kief et al.).
+  - Overview with references: https://www.eoportal.org/satellite-missions/trailblazer (includes: “The Advent of the PnP Cube Satellite,” IEEE Aerospace 2012)
+  - Relevance: Informs bus abstraction, modular autonomy manager concepts, and rapid HIL/prototyping paths for flight‑like systems.
+
+- [C6] RHEME — Radiation Hardened Electronic Memory Experiment (ISS/STP flights in 2016/2018/2022).
+  - Link: https://cosmiac.unm.edu/projects/rheme.html | NSREC brochure refs mentioning RHEME‑2/3: https://www.nsrec.com/wp-content//uploads/2023/07/NSREC-2023BROCHURE-07.05.2023.pdf
+  - Relevance: Radiation effects and SEU/TID mitigation heritage informing rad‑tolerant compute, SEU fault injection, and FPGA resilience strategies.
+
+- [C7] UNM Antennas & RF Lab (Christos Christodoulou) — Reconfigurable antennas, cognitive radio, phased arrays, and deployable/3D‑printed antennas.
+  - Link: https://rfant.unm.edu/
+  - Relevance: Front‑end technology for passive RF micro‑payloads and software‑defined, reconfigurable sensing architectures.
