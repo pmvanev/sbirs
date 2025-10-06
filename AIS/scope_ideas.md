@@ -53,6 +53,28 @@ This list groups big‑picture Phase I ideas by AIS Focus Area, leveraging Inter
 - Roles: IA — models/algorithms; COSMIAC — FPGA/neuromorphic feasibility, radiation test plan.
 - Why priority: Neuromorphic is a desired tech; Phase I feasibility quantifies energy gains and radiation risk—secondary to core autonomy/resilience.
 
+
+7) Collaborative Distributed Tip‑and‑Cue Across Multiple Hosts
+- Concept: Policies that coordinate tasking across multiple friendly spacecraft via crosslinks to maintain custody and reduce time‑to‑classification; integrates onboard triage and priority queues for evidence sharing. [R2][R3]
+- Phase I: design distributed tasking policies and conflict resolution; simulate crosslink‑limited coordination; evaluate robustness under comms degradation; interface hooks to BM/C2. [R2][R5]
+- Metrics: time‑to‑classification −30%; custody gaps −25%; crosslink utilization within power budget; operator interventions −25%. [R2][R3]
+- Roles: IA — distributed policy and M&S; COSMIAC — crosslink/SDR feasibility and power/thermal envelopes. [C4][C7]
+- Why priority: “Tip & cue between SDA and coordination functions” is explicitly desired; directly improves custody and decision timelines under contested conditions.
+
+8) Onboard PNT Integrity Monitors for Safe Autonomy
+- Concept: GNSS spoofing/jamming detection and navigation integrity monitoring that gates autonomy; leverages SDR/FPGA pipelines and ML detectors. [C1][C2]
+- Phase I: integrate spoofing/jamming detectors; define integrity metrics and fail‑safe behaviors; HIL plan with SDR; hazard log and V&V hooks. [R3][C1][C2]
+- Metrics: spoofing detection TPR ≥0.95 at FPR ≤0.05; autonomy shutdown/hold latency <1 s upon integrity breach; recovery <10 s after restoration. [C2]
+- Roles: IA — ML detectors/integration; COSMIAC — SDR/FPGA path and test vectors. [C1][C2]
+- Why priority: Loss/corruption of PNT is a primary operational hazard; this de‑risks any autonomous maneuver logic.
+
+9) Intent Attribution via Behavior Models and Knowledge Graph
+- Concept: Fuse kinematics, RF/EM signatures, and historical patterns to attribute benign vs. hostile intent with explainable outputs for ROE. [R1][R2]
+- Phase I: behavior model library; feature engineering and uncertainty handling; counterfactual explanations; operator digest schema. [R3]
+- Metrics: attribution F1 ≥0.85 on simulated scenarios; calibrated uncertainty (ECE <0.05); operator trust/usability ≥4/5. [R2][R3]
+- Roles: IA — models/explainability; COSMIAC — data realism and RF signature inputs. [C1][C7]
+- Why priority: Rapid attribution is central to doctrine and ROE; ties autonomy to human‑on‑the‑loop acceptance.
+
 Ref‑informed priorities: emphasize comms‑denied autonomy and debris‑minimizing actions (R1), doctrinal alignment to USSF decision advantage (R2), and trustworthy MLOps + V&V for safety‑critical edge AI (R3,R5,R6).
 
 ---
@@ -86,6 +108,14 @@ Ref‑informed priorities: emphasize comms‑denied autonomy and debris‑minimi
 - Metrics: custody break rate −25% in maneuver scenarios; fusion latency <200 ms.
 - Roles: IA — fusion/M&S; COSMIAC — power/thermal envelope, mounting/field‑of‑regard constraints.
 - Why priority: Improves custody through maneuvers; complements multi‑modal fusion central to SDA.
+
+
+5) Sensor Self‑Calibration and Health/Performance Monitoring
+- Concept: Onboard calibration checks, drift detection, and health monitoring to keep sensing/AI within valid envelopes over long missions. [R5]
+- Phase I: define calibration routines and drift metrics; simulate degradation scenarios; design self‑check schedules and downlink diagnostics. [R5]
+- Metrics: detection of >2% sensitivity drift within 24 h; false alarm rate <5%; zero unsafe tasks triggered by degraded sensors in sim.
+- Roles: IA — monitoring algorithms/integration; COSMIAC — sensor models and on‑sensor routine feasibility. [C4][C7]
+- Why priority: Preserves custody/attribution quality and maintains trust in autonomous sensing.
 
 Ref‑informed priorities: multi‑sensor fusion for SDA and attribution (R2,R3), onboard processing to cut timelines (R6), and hardware tradeoffs grounded in space processor data (R5).
 
@@ -123,6 +153,14 @@ Ref‑informed priorities: multi‑sensor fusion for SDA and attribution (R2,R3)
 - Roles: IA — policy coupling/M&S; COSMIAC — propulsion options/thermal impacts.
 - Why priority: High delta‑V is a desired capability; this analysis couples autonomy with propulsion envelopes to quantify feasibility.
 
+
+5) Run‑Time Assurance (Simplex) Safety Cage for Autonomy
+- Concept: Verified safety monitor with certified fallback controller that enforces invariants on AI/RL policies (keep‑out zones, propellant, thermal, pointing). [R4]
+- Phase I: specify safety invariants and fallback controller; formalize monitor checks; co‑simulation with autonomy stack; fault injection to validate guarantees. [R3][R4]
+- Metrics: 0 invariant violations in stress sims; safe fallback engagement within <100 ms; mission utility loss <5% vs. unconstrained policy.
+- Roles: IA — RTA design, verification, and integration with policies; COSMIAC — actuator/ADCS/thermal constraints and certification path.
+- Why priority: Converts autonomy into a certifiable operational capability; reduces evaluator risk and aligns with debris‑minimizing ROE.
+
 Ref‑informed priorities: constraint‑respecting maneuver logic (R4), resilience and rapid decision cycles (R1,R2), and heterogenous compute/secure update paths (R5,R6).
 
 ---
@@ -134,6 +172,10 @@ Ref‑informed priorities: constraint‑respecting maneuver logic (R4), resilien
 - HIL/Prototype Test Plan: bench test outline at COSMIAC (power/thermal/SEU injection/SDR), with data capture for Phase II gating. [R5][C6][C4]
 - Security & Compliance: zero‑trust enclaves, SBOM, secure update pathways; ITAR and STTR workshare planning. [R5]
 - Metrics & Eval: latency reductions (>50%), operator workload proxy (≥25% reduction), custody continuity, zero constraint‑violation target. [R2][R6]
+
+- Delay‑Tolerant Networking (DTN/BPv7) and opportunistic downlink QoS: onboard prioritization for action telemetry, evidence, and health; survives comms denial and exploits short ground/crosslink windows. [R2]
+- ROE‑aware operator digest (human‑on‑the‑loop): concise, explainable action summaries, counterfactuals, and escalation controls aligned to Space Battle Management workflows; ties to operator workload reduction. [R2]
+- Standards and interoperability hooks: CCSDS‑aligned data products and BM/C2 interface stubs to de‑risk Phase II/III transition and integration. [R2]
 
 ---
 
