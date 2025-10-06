@@ -44,23 +44,36 @@
 6) 2.0 Phase I Technical Objectives
 - Objective 1: Feasibility Study — documented technical/operational feasibility across focus areas; evidence: literature reviews, M&S, and trade studies; deliverables: initial report + feasibility assessment.
 - Objective 2: CONOPS & Architectural Framework — system‑level CONOPS, operational overview, and architecture diagrams; deliverables: CONOPS document and architecture package.
-- Objective 3: Edge Autonomy Stack Prototype — on‑device policy inference on rad‑tolerant compute; evidence: HIL demo with latency/power traces; deliverables: prototype code + demo scorecard.
+- Objective 3: Edge Autonomy Stack Prototype (POLARIS) — on‑device policy inference on rad‑tolerant compute; evidence: HIL demo with latency/power traces; deliverables: prototype code + demo scorecard.
 - Objective 4: Secure Updates & RTA Prototype — signed model/weight updates with rollback and safety cage; evidence: in‑the‑loop demo with audit/safety logs; deliverables: update runbook + logs.
 - Objective 5: Multi‑Host Tip‑and‑Cue Feasibility — MARL‑based coordination resilient to comms limits; evidence: simulation campaign vs. baseline heuristics; deliverables: auto‑scorecards and comparison report.
 - Objective 6: Standards & Interfaces Package — CCSDS/BM‑C2 schemas and interface stubs; evidence: sample data products and operator digest export; deliverables: schema set + stub endpoints.
 - Objective 7: Space MLOps & V&V Pipeline Stub — signed export, verification artifacts, and SBOM; evidence: dry‑run update in sim/HIL; deliverables: CI template + verification logs.
 - Objective 8: AIS Showcase & Phase II Proposal Package — final conference presentation and submission materials serving as the Phase II proposal; deliverables: slide deck and accompanying Phase II plan.
+- Objective 9: POLARIS Advancement for Target HW & Multi‑Agent Scenarios — quantization/pruning/mapping for target SoC/FPGA and alignment to multi‑agent scenarios; evidence: perf vs. baseline on dev board + sim; deliverables: performance report + updated weights.
 
 7) 3.0 Phase I Statement of Work (Base and Option)
-- Table 4 (Base, ~6 months): kickoff, concept demos (edge autonomy, safety/updates), MARL feasibility, standards/interface stubs, integrated demos & Phase II planning.
-- Table 5 (Option, ~6 months): advance edge inference & MARL, mid‑fidelity operator digest/BM‑C2 stubs, architecture/security planning.
-- Forward look to Phase II: integrated flight‑like prototype; relevant‑environment testing; end‑to‑end tip‑and‑cue with secure updates and operator digests.
+- Deliverable modality per task: prototype demo and/or feasibility report with auto‑scorecards.
+- Table 4 (Base, ~6 months): T1 Kickoff & literature/trade studies (feasibility report); T2 Edge Autonomy Stack concept demo with POLARIS on dev board (prototype + traces); T3 Safety/RTA & signed‑update demo‑in‑the‑loop (prototype + audit logs); T4 Multi‑Host tip‑and‑cue feasibility (sim campaign vs baseline; report + scorecards); T5 Standards & interfaces + operator digest stubs (schemas + sample exports); T6 Integrated demos & Phase II planning (integrated demo + planning memo).
+- Table 5 (Option, ~6 months): T7 Advance POLARIS for target HW & multi‑agent scenarios (quantization/pruning/scheduling; prototype + performance report); T8 Expand MARL + message policy under jamming (sim campaign + ablation report); T9 Mid‑fidelity operator digest/BM‑C2 stubs (UI/workflow prototype + usability notes); T10 Architecture hardening & security planning (SBOM/keys/runbooks; security plan).
+- Forward look to Phase II: documented development and demonstration plan for a flight‑like prototype, relevant‑environment testing, and end‑to‑end tip‑and‑cue with secure updates and operator digests.
 
 8) 1.3 Related Work
-- Table 6: IA/COSMIAC heritage and comparators; differentiation.
+- Table 6: IA and COSMIAC heritage most relevant to AURORA; key comparators; differentiation.
+  - Interactive Aptitude (IA): POLARIS (RL training platform integrating Basilisk + Gymnasium for GEO/XGEO/cislunar); CMA‑SHIELD (TRL‑2 shielded MARL for multi‑satellite C2); NGSX (multi‑spacecraft autonomy testbed); SIERO (many‑vs‑many wargaming); DARPA ACK/ARAKNID (TRL‑9 multi‑domain C2 with Platform One CtF); HIL and digital twin experience.
+  - COSMIAC (UNM): Rad‑tolerant compute and secure embedded/FPGA expertise (secure boot/root‑of‑trust); radiation effects testing; SDR/crosslink emulation and RF from ~450 MHz–84 GHz; two 24/7 ground stations; PNT/GNSS hardening; small‑sat build/test facilities; TS/SCI‑capable staff and labs.
+  - Relevance to AURORA: IA provides MARL/edge autonomy lineage and sim‑to‑HIL pipelines; COSMIAC provides hardware benches and RF/space environmental validation to de‑risk on‑device autonomy and updates.
+  - Comparators: prior rule‑based/heuristic coordinators and non‑certifiable on‑orbit AI; AURORA differentiates via certifiable updates + RTA + MARL under comms limits and standards‑aligned interfaces.
 
 9) 2.0 Key Personnel
-- Table 7: PI and SMEs for RL/MARL, safety/RTA, embedded/FPGA mapping, MLOps/standards; COSMIAC lab leads.
+- Table 7: Key personnel roles (IA and COSMIAC).
+  - IA — Chief Scientist: multi‑agent RL/autonomy for SDA; leads POLARIS/CMA‑SHIELD lineage.
+  - IA — Chief Technology Officer (CTO): secure cloud‑native platforms; Platform One CtF; MLOps/standards integration.
+  - IA — Principal Software Engineer: RL systems, edge integration, HIL prototyping; POLARIS/NGSX.
+  - COSMIAC — Chief Scientist: secure embedded systems/FPGA, GNSS; secure boot/root‑of‑trust; radiation testing coordination.
+  - COSMIAC — Deputy Director: space systems, controls/dynamics, ML/vision; HIL bench and SDR/crosslink emulation.
+  - COSMIAC — Chief Engineer: modeling/simulation; RF/comm integration to benches.
+  - COSMIAC — Director of Innovation: satellite comms and ground‑station integration; program transition.
 
 10) 3.0 Commercialization/Transition Plan Summary
 - 3.1 Overview; transition pathway (USSF/SDA); Phase I–III plan; engagements; dual‑use expansion; differentiation; risks/mitigations; revenue/scaling.
