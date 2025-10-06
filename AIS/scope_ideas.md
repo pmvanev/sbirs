@@ -157,3 +157,9 @@ Ref‑informed priorities: constraint‑respecting maneuver logic (R4), resilien
 - R4: IEEE AERO 2023 — MPC for RPOD; constraint‑aware controllers for onboard maneuvering
 - R5: NASA Current Technology in Space v4 — hardware tradeoffs, Space MLOps, certifiable updates
 - R6: Lockheed Martin AIAA — on‑board AI/ML mission processing patterns and performance
+
+
+## Other
+- tasking multiple sensors on a single host to optimally collect data, particularly adversarial positions and maneuvers
+- tasking multiple sensors on multiple hosts to optimally collect data, particularly adversarial positions and maneuvers
+- is our RL agent capable of running on rad-hard SoC?
