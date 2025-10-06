@@ -1,4 +1,4 @@
-## AIS Proposal — Outline and Mapping Summary (POLARIS Edge Autonomy + Multi-Agent Coordination + Standards)
+## AIS Proposal — Outline and Mapping Summary (AURORA Edge Autonomy + Multi-Agent Coordination + Standards)
 
 ### Executive Summary (What this proposal does)
 - Demonstrates feasibility of resilient, certifiable edge autonomy for contested space by integrating: (1) POLARIS RL policy inference on radiation‑tolerant SoC/FPGA with secure boot and memory‑safe runtime; (2) multi‑host collaborative tip‑and‑cue (MARL/CTDE) across GEO/XGEO/cislunar; (3) standards‑forward security, update, and interoperability package aligned to CCSDS/BM‑C2.
@@ -15,7 +15,9 @@
 
 ### Section-by-Section Outline
 1) Front Matter
-- Volume and Title: "Volume 2: Technical Volume"; Title: "POLARIS‑AIS: Resilient Edge Autonomy and Multi‑Agent Coordination on Rad‑Tolerant Compute for SDA".
+- Volume and Title: "Volume 2: Technical Volume"; Title: "AURORA: Resilient Edge Autonomy and Multi‑Agent Coordination on Rad‑Tolerant Compute for SDA".
+
+- Definitions/Glossary: see AIS/aurora/Definitions.md
 
 2) 1.0 Description of Proposed Phase I Technical Effort
 - Problem: Ground‑loop latency, comms denial, and cognitive overload limit SDA/SC responsiveness; current systems lack certifiable onboard autonomy, resilient updates, and multi‑asset coordination under bandwidth/energy caps.
