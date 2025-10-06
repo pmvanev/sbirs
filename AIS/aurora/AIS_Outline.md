@@ -1,138 +1,100 @@
-## AIS Proposal — Outline and Mapping Summary (Autonomous Updatable Resilient On-orbit Reasoning Architecture — AURORA: Edge Autonomy + Multi-Agent Coordination + Standards)
+## AIS Proposal — Outline and Mapping Summary (Autonomous Updatable Resilient On-orbit Reasoning Architecture — AURORA)
 
 ### Executive Summary (What this proposal does)
-- Demonstrates feasibility of resilient, certifiable edge autonomy for contested space by integrating: (1) POLARIS RL policy inference on radiation‑tolerant SoC/FPGA with secure boot and memory‑safe runtime; (2) multi‑host collaborative tip‑and‑cue (MARL/CTDE) across GEO/XGEO/cislunar; (3) standards‑forward security, update, and interoperability package aligned to CCSDS/BM‑C2.
-- Core subsystems/innovations:
-  - Rad‑Tolerant Edge Autonomy Stack (quantized POLARIS on SoC/FPGA with secure update + rollback)
-  - RTA/Simplex Safety Cage and Operator Digest (safety, explainability, certifiability)
-  - Multi‑Host Tip‑and‑Cue (MARL) with comms‑denied resilience
-  - Space MLOps & V&V for certifiable on‑orbit model/weight updates
-  - Standards & Interfaces: CCSDS/BM‑C2 schemas, DTN/BPv7‑aware downlink prioritization (optional)
-- Phase I deliverables per AIS: feasibility study and documented feasibility assessment; initial CONOPS and architectural framework; proposed Phase II development plan; final report; and AIS Phase I Showcase submission (5‑page Technical Volume, Cost Volume, and a 10‑slide presentation deck) in collaboration with COSMIAC.
-- Transition targets: USSF Space Battle Management (SBM) workflows, SDA pipelines, edge compute payloads; Phase II path to integrated prototype and relevant‑environment demos.
+- Proposes a resilient, certifiable edge‑autonomy and coordination architecture for contested space operations.
+- Core subsystems: Edge Autonomy Stack; Safety/RTA + Operator Digest; Multi‑Host Tip‑and‑Cue (MARL); Space MLOps & V&V; Standards & Interfaces.
+- Phase I validates feasibility via simulation/HIL, initial CONOPS/architecture, and a focused metrics plan; prepared with COSMIAC.
 
 ---
 
 ### Section-by-Section Outline
 1) Front Matter
-- Volume and Title: "Volume 2: Technical Volume"; Title: "AURORA: Resilient Edge Autonomy and Multi‑Agent Coordination on Rad‑Tolerant Compute for SDA".
-
+- Volume and Title: "Volume 2: Technical Volume"; Title: "AURORA: Resilient Edge Autonomy and Multi‑Agent Coordination for SDA".
 - Definitions/Glossary: see AIS/aurora/Definitions.md
 
 2) 1.0 Description of Proposed Phase I Technical Effort
-- Problem: Ground‑loop latency, comms denial, and cognitive overload limit SDA/SC responsiveness; current systems lack certifiable onboard autonomy, resilient updates, and multi‑asset coordination under bandwidth/energy caps.
-- Scenario: Cooperative SDA across GEO/XGEO/cislunar where crosslinks/ground links are intermittent or jammed; assets must detect, classify intent, and take safe action with minimal operator intervention.
+- Problem: Ground‑loop latency, comms denial, and cognitive overload constrain SDA responsiveness; onboard autonomy and multi‑asset coordination are needed.
+- Scenario: Cooperative SDA across GEO/XGEO/cislunar with intermittent/jammed links; assets must detect, classify, and act safely with minimal operator intervention.
 - Proposed Solution (five innovations):
-  - Rad‑Tolerant Edge Autonomy Stack — POLARIS RL policy compiled to SoC/FPGA with secure boot/root‑of‑trust and memory‑safe runtime.
-  - RTA/Simplex Safety Cage & Operator Digest — runtime assurance, traceable logs, and human‑oriented digests for oversight.
-  - Multi‑Host Tip‑and‑Cue (MARL/CTDE) — collaborative tasking, message policies, and resilience to message drop/jamming.
-  - Space MLOps & V&V — certifiable model/weight export, signed updates, rollback, verification artifacts.
-  - Standards & Interfaces — CCSDS/BM‑C2 schemas; interface stubs; optional DTN/BPv7 QoS for prioritized alerts/evidence.
-- Figures/Tables: Figure 1 (system architecture). Table 1 (degree of innovation). Table 2 (topic/requirement alignment).
-- Team: Interactive Aptitude (IA) with COSMIAC (research institution) partnering; Phase I goals/deliverables: feasibility study and documented feasibility assessment; initial CONOPS and architectural framework; proposed Phase II development plan; final report; and AIS Phase I Showcase documentation (incl. 5‑page Technical Volume, Cost Volume, and 10‑slide deck) serving as the Phase II proposal submission.
+  - Edge Autonomy Stack — on‑device policy inference on rad‑tolerant compute with secure boot and safe runtime.
+  - Safety/RTA + Operator Digest — runtime assurance and human‑oriented oversight artifacts.
+  - Multi‑Host Tip‑and‑Cue (MARL) — collaborative tasking resilient to drop/jamming.
+  - Space MLOps & V&V — signed updates, rollback, verification logs.
+  - Standards & Interfaces — CCSDS/BM‑C2‑aligned schemas and stubs.
+- Figures/Tables: Figure 1 (architecture). Table 1 (degree of innovation). Table 2 (topic alignment).
+- Team: IA with COSMIAC; goal is a Phase I proof‑of‑feasibility and Phase II plan.
 
 3) 1.01 Technical Approach
-- Integrated, modular architecture: Edge autonomy on rad‑tolerant compute, MARL coordination layer, safety/assurance, and standards‑based interfaces; ingest synthetic and heritage data; produce operator digests and BM‑C2‑aligned outputs.
-- Subsections (each with challenge + Degree of Innovation + methods + evidence/TRL + operational impact):
-  1. Rad‑Tolerant Edge Autonomy Stack — low‑latency, low‑power inference; secure boot; ECC/TMR; quantized/pruned POLARIS actor mapped to SoC/FPGA/DPU; HIL latency/power/thermal evidence.
-  2. RTA/Simplex Safety Cage & Operator Digest — safety invariants; fallback <100 ms; explainability traces; certifiability posture.
-  3. Multi‑Host Tip‑and‑Cue (MARL/CTDE) — CTDE vs. CBBA baseline; parameter sharing; message‑dropout training; comms budgets; resilience under jamming.
-  4. Space MLOps & V&V — signed containerized updates; rollback; SBOM; logs and verification artifacts; on‑orbit certification pathway.
-- Security posture: DoD IL-4 container hardening pathway and STIG-compliant audit logging planned; GovCloud SaaS and on-prem Helm deployment options (Phase II/III).
-- Compute targets: rad-tolerant SoC/FPGA with optional DPU-class accelerator (e.g., FPGA-resident deep-learning processing core) within power/thermal envelopes.
-
-
-  5. Standards & Interfaces — CCSDS‑aligned data products, BM‑C2 stubs, schemas for actions/evidence/health; optional DTN/BPv7 QoS.
-- Campaigns: One-click Monte-Carlo + fault-injection campaigns with auto-scoring rubric; stress link drop (0/30/60%), blackout windows (5-60 s), SEU/thermal envelopes, and adversary behaviors.
-- Tooling & artifacts: YAML mission packs; 1000x faster-than-real-time batch sim; live safety dashboard and PDF scorecard export to support reviews and Phase II planning.
-- Safety: Shielded DRL (CMA-SHIELD lineage) with RTA/Simplex arbitration; 0 invariant violations target under stress campaigns.
-
+- Integrated, modular architecture: edge autonomy on rad‑tolerant compute; MARL coordination; safety/assurance; standards‑based interfaces.
+- Subsections (each with challenge + DoI):
+  1. Edge Autonomy Stack — low‑latency, low‑power policy inference with secure boot and memory‑safe runtime.
+  2. Safety/RTA + Operator Digest — safety invariants, fallback behavior, and explainability traces.
+  3. Multi‑Host Tip‑and‑Cue (MARL) — collaboration under comms limits; compare against baseline heuristics.
+  4. Space MLOps & V&V — signed updates, rollback, SBOM/verification artifacts.
+  5. Standards & Interfaces — CCSDS‑aligned data products and BM‑C2 stubs.
+- Security & Compute: container hardening pathway; rad‑tolerant SoC/FPGA with optional accelerator within power/thermal envelopes.
 
 4) 1.02 Alignment with Topic Requirements
-- Table 2 maps AIS solicitation/guidelines to solution elements:
-  - Edge Computing & Algorithms → Rad‑Tolerant Edge Autonomy Stack; RTA/Safety; Space MLOps.
-  - Sensor Payloads (addressed via simulation and integration readiness) → multi‑modal fusion in M&S; interface schemas for payload data.
-  - Bus Design (integration posture) → secure boot/root‑of‑trust; thermal/power awareness; HIL envelopes with COSMIAC.
-  - Phase I focus → literature reviews, M&S, trade studies, university collaboration (COSMIAC), feasibility, mission alignment.
-  - Deliverables → initial report; feasibility assessment; CONOPS; architecture; Phase II plan; final report; showcase docs.
-  - STTR compliance → research institution workshare, roles, and facilities called out.
+- Table 2 maps AIS requirements to solution elements (edge autonomy, safety/assurance, coordination under comms limits, standards/interoperability, Phase I feasibility focus, STTR collaboration).
 
 5) 1.03 Data, Evaluation, & Metrics
-- Data: synthetic scenarios for GEO/XGEO/cislunar; adversary behaviors; crosslink/ground jamming; heritage references for validation.
-- Metrics and success criteria (Table 3):
-  - Decision latency: >50% reduction vs. ground‑loop baseline in sim; <10 ms on‑device inference (SoC/FPGA prototype).
-  - Operator workload proxy: ≥25% reduction via autonomous action broker + operator digest.
-  - Custody gaps/time‑to‑classification: −25–35% and −30–40% vs. heuristics under bandwidth caps.
-  - Safety/certifiability: 0 invariant violations in stress sims; RTA fallback <100 ms; signed update + rollback demonstrated in HIL.
-  - Resilience: autonomous hold/safe mode <1 s on integrity breach; recovery <10 s post‑restoration.
-- M&S fidelity: <=10% RMS error vs. reference test data on key kinematics/sensing KPIs (NGSX/SIERO-style validation runs).
-
+- Data: synthetic scenarios and heritage references for GEO/XGEO/cislunar; adversary and comms‑denied conditions.
+- Table 3: metrics/goals/methods for autonomy latency/power, operator workload proxy, custody/time‑to‑classification, safety/RTA, and resilience.
 
 6) 2.0 Phase I Technical Objectives
-- Objective 1: Edge Autonomy on Rad‑Tolerant Compute — feasibility of quantized POLARIS on SoC/FPGA with secure boot and memory‑safe runtime; measured latency/power/thermal.
-- Objective 2: Secure Updates & RTA — demonstrate signed weight updates, rollback, and safety cage performance; certifiability artifacts.
-- Objective 3: Multi‑Host Tip‑and‑Cue (MARL) — demonstrate collaborative coordination under comms caps/jamming; compare to CBBA/heuristics.
-- Objective 4: Standards & Interfaces — produce CCSDS/BM‑C2 schemas and interface stubs; operator digest and evidence traces.
-- Objective 5: Space MLOps & V&V — export pipeline, verification logs, and update runbooks; SBOM and trust anchors.
-- Objective 6: Integrated Feasibility and Security/Readiness Review — stitched M&S and HIL results; preliminary security posture; Phase II roadmap.
+- Objective 1: Edge Autonomy — feasibility of on‑device policy inference on rad‑tolerant compute.
+- Objective 2: Secure Updates & RTA — signed updates, rollback, and safety cage behavior.
+- Objective 3: Multi‑Host Tip‑and‑Cue — collaborative coordination under comms constraints.
+- Objective 4: Standards & Interfaces — CCSDS/BM‑C2 schemas and interface stubs.
+- Objective 5: Space MLOps & V&V — export pipeline and verification logs.
+- Objective 6: Integrated Feasibility & Security Readiness Review — integrated sims/HIL and preliminary security posture.
 
 7) 3.0 Phase I Statement of Work (Base and Option)
-- Campaign manager + autoscoring rubric implemented; batch runs produce standardized scorecards for decision latency, custody, bytes/agent, and safety invariants.
-
-- Table 4 (Base, ~6 months): T1 Kickoff & literature/trade studies; T2 Edge Autonomy concept demo on dev board; T3 Safety cage & signed‑update demo‑in‑the‑loop; T4 MARL feasibility (CTDE vs. CBBA) in contested comms; T5 Standards & interface schemas + operator digest; T6 Integrated demos & Phase II planning.
-- Table 5 (Option, ~6 months): T7 Advance edge inference (latency/power/thermal envelopes); T8 Expand MARL + message policy learning under jamming; T9 Mid‑fidelity UI/workflow for digest and BM‑C2 stubs; T10 Architecture hardening & security planning (SBOM, keys, workshare, ITAR).
-- Forward look to Phase II: integrated flight‑like payload prototype; thermal‑vac/rad testing; cross‑vendor bus interfaces; end‑to‑end tip‑and‑cue with secure updates and operator digests aligned to BM‑C2.
+- Table 4 (Base, ~6 months): kickoff, concept demos (edge autonomy, safety/updates), MARL feasibility, standards/interface stubs, integrated demos & Phase II planning.
+- Table 5 (Option, ~6 months): advance edge inference & MARL, mid‑fidelity operator digest/BM‑C2 stubs, architecture/security planning.
+- Forward look to Phase II: integrated flight‑like prototype; relevant‑environment testing; end‑to‑end tip‑and‑cue with secure updates and operator digests.
 
 8) 1.3 Related Work
-- Table 6: IA heritage (POLARIS, CMA‑SHIELD, NGSX, multi‑agent RL); COSMIAC rad‑tolerant compute, SDR/crosslink emulation, PNT/anti‑spoofing; industry/academic comparators; differentiation.
+- Table 6: IA/COSMIAC heritage and comparators; differentiation.
 
 9) 2.0 Key Personnel
-- Table 7: PI and SMEs (IA) for RL/MARL, safety/RTA, embedded/FPGA mapping, MLOps/standards; COSMIAC leads for rad‑tolerant compute, secure boot/root‑of‑trust, HIL bench and SDR/crosslink emulation.
+- Table 7: PI and SMEs for RL/MARL, safety/RTA, embedded/FPGA mapping, MLOps/standards; COSMIAC lab leads.
 
 10) 3.0 Commercialization/Transition Plan Summary
-- 3.1 Overview; 3.1.1 USSF transition pathway (SBM/SDA programs, Task Force Futures, SpaceWERX); 3.1.2 Phase I–III plan; 3.1.3 engagement strategy (NIWC/SSC partners, COSMIAC labs, AIS showcase); 3.1.4 dual‑use expansion (constellation autonomy, secure edge AI, MARL fleet coordination, simulation tooling); 3.1.5 competitive differentiation (certifiable updates + RTA + MARL under comms limits); 3.1.6 risks/mitigations; 3.1.7 revenue/scaling.
-- Table 9: commercialization timeline milestones (quarters/years).
-- Stakeholder value: Rehearse autonomous custody via zero‑risk digital twins; cut months off flight‑software V&V with campaign automation and auto‑scorecards.
-
+- 3.1 Overview; transition pathway (USSF/SDA); Phase I–III plan; engagements; dual‑use expansion; differentiation; risks/mitigations; revenue/scaling.
+- Table 9: commercialization timeline milestones.
 
 11) 4.0 Facilities/Equipment
-- IA compute resources, simulation toolchains, secure repos; COSMIAC labs for rad‑tolerant compute evaluation, HIL bench (power/thermal/SEU), SDR crosslink emulation; security controls (RMF/NIST 800‑171, RBAC/MFA, FIPS 140‑2), secure facilities access.
+- Computing resources, simulation toolchains, secure repos; COSMIAC rad‑tolerant compute benches and SDR/crosslink emulation; security controls.
 
 12) 5.0 References
-- Citations aligned to R1–R6 and C1–C7 from scope; standards and related literature.
+- Citations aligned to standards and related literature.
 
 ---
 
 ### Content Mapping (Crosswalk)
-- Problem Context → 1.0; Scenario → 1.0; Figures illustrate architecture and workflows.
-- Innovation Modules → 1.01 subsections:
-  - Edge Autonomy Stack → on‑device RL inference; meets: Edge Computing & Algorithms; resilience; certifiable updates.
-  - RTA/Simplex + Operator Digest → safety; meets: autonomy assurance; operator‑centric oversight.
-  - Multi‑Host Tip‑and‑Cue (MARL) → coordination; meets: responsiveness in contested environments; reduced workload.
-  - Space MLOps & V&V → lifecycle; meets: feasibility/transition; STTR rigor.
-  - Standards & Interfaces → interoperability; meets: integration‑ready design for sensors/compute/maneuver; CONOPS support.
-- Topic Compliance → 1.02 Table 2 maps AIS guidelines: feasibility study focus (lit review, M&S, trade studies), research institution collaboration (COSMIAC), CONOPS and architectural framework, Phase II plan, deliverables, and ITAR awareness.
-- Evaluation Plan → 1.03 Table 3 defines metrics, methods, and success criteria drawn from Phase I targets.
-- Technical Objectives → 2.0 enumerates objectives aligned to modules and integration.
-- SoW & Schedule → 3.0 Tables 4–5 provide Base/Option tasks and milestones.
-- Transition & Commercialization → plan, engagements, dual‑use, differentiation, risks, timeline.
-- Organizational Capacity → Related Work (1.3), Key Personnel (2.0), Facilities/Equipment (4.0).
+- Problem/Scenario → 1.0; Figures illustrate architecture and workflows.
+- Innovation Modules → 1.01 (Edge Autonomy; Safety/RTA; Multi‑Host Tip‑and‑Cue; Space MLOps & V&V; Standards & Interfaces).
+- Topic Compliance → 1.02 Table 2 maps AIS guidelines to modules and deliverables.
+- Evaluation Plan → 1.03 Table 3 defines metrics/methods/success criteria.
+- Objectives → 2.0; SoW & Schedule → 3.0 Tables 4–5.
+- Transition & Commercialization → plan, engagements, dual‑use, risks, timeline.
+- Organizational Capacity → Related Work, Key Personnel, Facilities/Equipment.
 
 ---
 
 ### Compliance Checklist (Guidelines → Where Addressed)
-- Investigate feasibility via lit reviews, M&S, trade studies → 1.0, 1.03, 3.0.
-- Reduce risk, validate feasibility, refine mission alignment → 1.0, 1.01, 1.03, 2.0.
-- Define scope, research methods, collaboration plan (COSMIAC), expected outcomes → 1.0, 1.01, 2.0, 3.0, 4.0, 5.0.
-- Address focus areas (Edge Computing & Algorithms; integration posture for Sensors/Bus) → 1.02 mapping; 1.01 subsections.
-- Include initial CONOPS and architectural framework → 1.0, 1.01; figures/tables; deliverables list.
-- Phase I deliverables (initial report, feasibility assessment, CONOPS/architecture, Phase II plan, final report, showcase) → 1.02/Phase I Deliverables; 3.0.
-- STTR: Research institution collaboration and workshare → 1.0 Team; 3.0 SoW; 4.0 Facilities; explicitly name COSMIAC.
+- Feasibility via lit reviews, M&S, and trade studies → 1.0, 1.03, 3.0.
+- Risk reduction, feasibility validation, mission alignment → 1.0, 1.01, 1.03, 2.0.
+- Scope, methods, collaboration (COSMIAC), expected outcomes → 1.0–5.0.
+- Focus areas (Edge Computing & Algorithms; integration for Sensors/Bus) → 1.02; 1.01.
+- Initial CONOPS and architectural framework → 1.0, 1.01; figures/tables.
+- Phase I deliverables (reports, feasibility, CONOPS/architecture, Phase II plan, showcase) → 1.02; 3.0.
+- STTR compliance (research institution workshare) → 1.0 Team; 3.0 SoW; 4.0 Facilities.
 - Phase II outlook and transition relevance → 3.0 forward look; 3.0 Commercialization.
 
 ---
 
 ### Figures and Tables (as referenced)
-- Figures: 1 (Architecture), 2 (Edge Autonomy HIL Bench/flow), 3 (Multi‑Host MARL/Tip‑and‑Cue workflow), 4 (Operator Digest & BM‑C2 interface view).
-- Tables: 1 (Degree of Innovation), 2 (Topic/Requirement Alignment), 3 (Metrics), 4 (Base SoW), 5 (Option SoW), 6 (Related Work), 7 (Key Personnel), 9 (Commercialization Timeline).
-
+- Figures: 1 (Architecture), 2 (Edge Autonomy HIL/flow), 3 (Multi‑Host MARL workflow), 4 (Operator Digest & BM‑C2 view).
+- Tables: 1 (Degree of Innovation), 2 (Topic Alignment), 3 (Metrics), 4 (Base SoW), 5 (Option SoW), 6 (Related Work), 7 (Key Personnel), 9 (Commercialization Timeline).
