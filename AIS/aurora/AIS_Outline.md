@@ -1,4 +1,4 @@
-## AIS Proposal — Outline and Mapping Summary (AURORA Edge Autonomy + Multi-Agent Coordination + Standards)
+## AIS Proposal — Outline and Mapping Summary (Autonomous Updatable Resilient On-orbit Reasoning Architecture — AURORA: Edge Autonomy + Multi-Agent Coordination + Standards)
 
 ### Executive Summary (What this proposal does)
 - Demonstrates feasibility of resilient, certifiable edge autonomy for contested space by integrating: (1) POLARIS RL policy inference on radiation‑tolerant SoC/FPGA with secure boot and memory‑safe runtime; (2) multi‑host collaborative tip‑and‑cue (MARL/CTDE) across GEO/XGEO/cislunar; (3) standards‑forward security, update, and interoperability package aligned to CCSDS/BM‑C2.
