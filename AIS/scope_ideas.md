@@ -61,6 +61,12 @@ This list groups big‑picture Phase I ideas by AIS Focus Area, leveraging Inter
 - Roles: IA — distributed policy and M&S; COSMIAC — crosslink/SDR feasibility and power/thermal envelopes. [C4][C7]
 - Why priority: “Tip & cue between SDA and coordination functions” is explicitly desired; directly improves custody and decision timelines under contested conditions.
 
+7a) MARL for Collaborative Tip‑and‑Cue (CTDE)
+- Concept: Centralized‑training, decentralized‑execution MARL learns coordinated tasking across assets with comms/energy budgets. [R2][R3]
+- Phase I: MAPPO/QMIX vs CBBA baseline in crosslink‑limited sims; message‑dropout training; ROE‑constrained RTA/Simplex safety cage. [R4][R5]
+- Metrics: time‑to‑classification −30–40%; custody gaps −25–35%; alert latency within target under bandwidth caps; 0 safety invariant violations.
+
+
 8) Onboard PNT Integrity Monitors for Safe Autonomy
 - Concept: GNSS spoofing/jamming detection and navigation integrity monitoring that gates autonomy; leverages SDR/FPGA pipelines and ML detectors. [C1][C2]
 - Phase I: integrate spoofing/jamming detectors; define integrity metrics and fail‑safe behaviors; HIL plan with SDR; hazard log and V&V hooks. [R3][C1][C2]
