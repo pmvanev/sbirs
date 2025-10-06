@@ -42,12 +42,14 @@
 - Table 3: metrics/goals/methods for autonomy latency/power, operator workload proxy, custody/time‑to‑classification, safety/RTA, and resilience.
 
 6) 2.0 Phase I Technical Objectives
-- Objective 1: Edge Autonomy — feasibility of on‑device policy inference on rad‑tolerant compute.
-- Objective 2: Secure Updates & RTA — signed updates, rollback, and safety cage behavior.
-- Objective 3: Multi‑Host Tip‑and‑Cue — collaborative coordination under comms constraints.
-- Objective 4: Standards & Interfaces — CCSDS/BM‑C2 schemas and interface stubs.
-- Objective 5: Space MLOps & V&V — export pipeline and verification logs.
-- Objective 6: Integrated Feasibility & Security Readiness Review — integrated sims/HIL and preliminary security posture.
+- Objective 1: Feasibility Study — documented technical/operational feasibility across focus areas; evidence: literature reviews, M&S, and trade studies; deliverables: initial report + feasibility assessment.
+- Objective 2: CONOPS & Architectural Framework — system‑level CONOPS, operational overview, and architecture diagrams; deliverables: CONOPS document and architecture package.
+- Objective 3: Edge Autonomy Stack Prototype — on‑device policy inference on rad‑tolerant compute; evidence: HIL demo with latency/power traces; deliverables: prototype code + demo scorecard.
+- Objective 4: Secure Updates & RTA Prototype — signed model/weight updates with rollback and safety cage; evidence: in‑the‑loop demo with audit/safety logs; deliverables: update runbook + logs.
+- Objective 5: Multi‑Host Tip‑and‑Cue Feasibility — MARL‑based coordination resilient to comms limits; evidence: simulation campaign vs. baseline heuristics; deliverables: auto‑scorecards and comparison report.
+- Objective 6: Standards & Interfaces Package — CCSDS/BM‑C2 schemas and interface stubs; evidence: sample data products and operator digest export; deliverables: schema set + stub endpoints.
+- Objective 7: Space MLOps & V&V Pipeline Stub — signed export, verification artifacts, and SBOM; evidence: dry‑run update in sim/HIL; deliverables: CI template + verification logs.
+- Objective 8: AIS Showcase & Phase II Proposal Package — final conference presentation and submission materials serving as the Phase II proposal; deliverables: slide deck and accompanying Phase II plan.
 
 7) 3.0 Phase I Statement of Work (Base and Option)
 - Table 4 (Base, ~6 months): kickoff, concept demos (edge autonomy, safety/updates), MARL feasibility, standards/interface stubs, integrated demos & Phase II planning.
