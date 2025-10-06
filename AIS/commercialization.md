@@ -107,6 +107,10 @@ This document translates Phase I scope concepts into commercialization-ready pro
 - Dual hardware+software with strong demand: 4, 5, 6, 9, 12
 - Platform/service recurring revenue: 3, 10, 11
 
+
+## Commercial potential: Broadband/Mesh Networking Constellations
+- Amazon Project Kuiper: AURORA’s MARL‑based coordination can optimize beam steering, inter‑satellite handoffs, and power/thermal balancing to maximize capacity and availability during outages. Its Space MLOps pipeline enables safe on‑orbit model/weight updates for dynamic traffic engineering and incident response, improving QoS and resilience with minimal operator intervention.
+
 ## Immediate Next Steps
 - Select top 3 for MVP build and pilot customers.
 - Prepare a one-page for each (problem, proof, plan, price) and a 90-day build plan.
