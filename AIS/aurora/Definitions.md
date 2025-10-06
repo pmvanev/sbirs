@@ -37,4 +37,6 @@ This document spells out acronyms used in the AURORA proposal materials and prov
 - RMF — Risk Management Framework: NIST framework for managing information security and risk in federal systems.
 - NIST SP 800-171 — Protecting Controlled Unclassified Information in Nonfederal Systems and Organizations: Security requirements for handling CUI.
 - FIPS 140-2 — Federal Information Processing Standard 140-2: U.S. government standard for cryptographic modules.
+- DPU — Data/Deep-Learning Processing Unit: A dedicated accelerator for onboard inference (e.g., FPGA-resident deep-learning processing core); an optional adjunct to rad-tolerant SoC/FPGA within power/thermal/radiation envelopes.
+
 
