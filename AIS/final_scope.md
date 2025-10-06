@@ -96,6 +96,17 @@ In effect, Phase I culminates in a smart, standards‑aligned constellation conc
 - MARL fleet coordination: multi‑vehicle (UAV/maritime/ground) coordination under comms limits and adversarial conditions.
 - Secure edge AI: safety‑critical embedded platforms (industrial/energy/transport) with certifiable model updates and SBOM.
 - Simulation & training products: cislunar‑grade visualization, scenario packs, and autonomy evaluation toolchains.
+- Weather/meteorology constellations: smart onboard agents optimize collection planning (cloud-aware), ROI compression to minimize downlink, and solar-charging-aware duty cycling to extend lifetime.
+- Environmental disaster monitoring (wildfire, floods, hurricanes, oil spills): event-driven tip‑and‑cue across sensors; prioritize urgent ROIs and opportunistic downlink for faster response timelines.
+- PNT/GNSS augmentation constellations: on‑orbit integrity monitoring and anti‑spoofing; coordinated health reporting and safe autonomy to preserve service availability.
+- Broadband/mesh networking constellations (e.g., Starlink, OneWeb): multi‑agent coordination for beam steering, inter‑sat handoffs, and power/thermal balancing to maximize capacity and availability under outages.
+- SAR constellations: multi‑sat revisit optimization and on‑sensor change detection; cross‑cue optical/IR assets to confirm events with minimal bandwidth.
+- Maritime/aviation tracking (AIS/ADS‑B relay) constellations: cooperative tasking to maintain custody of high‑value targets and reduce latency to shore networks.
+- On‑orbit servicing/tugs and debris removal: safe RPOD planning with RTA/Simplex, crosslink‑aware coordination, and certifiable update pathways.
+- Agriculture/land‑use analytics: targeted HSI collections with weather‑aware planning and ROI prioritization to cut costs per insight.
+- Space weather/heliophysics monitoring: energy‑aware scheduling and prioritized alerting via DTN for geomagnetic storm events.
+- IoT/LPWAN constellations: gateway scheduling and coverage optimization under power/link constraints; DTN‑backed firmware/model update logistics.
+
 
 ## Risks and mitigations
 - Hardware SWaP limits for inference: mitigate via quantization/pruning, FPGA offload, and heterogeneous compute design (R5, R6).
