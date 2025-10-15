@@ -9,7 +9,7 @@ This integrated scope consolidates and extends scope elements in AIS/spectra/sco
 
 ## Executive summary
 SPECTRA (Sensor Processing at the Edge for Cognitive Threat Reconnaissance and Alert) is a cross‑modal effort to deliver:
-1) A modular, reconfigurable sensor‑compute payload architecture (HPC‑S) and on‑sensor analytics that apply to arbitrary in‑flight sensors; in Phase I we prototype and evaluate the feasibility of the RF path (passive RF front end) via sim/HIL runs and initial bench snapshots, while keeping interfaces modality‑agnostic.
+1) A modular, reconfigurable sensor‑compute payload architecture (HPC‑S) and on‑sensor analytics that apply to arbitrary in‑flight sensors; in Phase I we prototype and evaluate the feasibility of the RF path (passive RF front end) via sim/HIL runs and initial bench snapshots, while keeping interfaces modality‑agnostic. The architecture supports multimodal sensor fusion at the edge, enabling joint RF/SAR/EO/IR/HSI processing for enhanced threat detection and classification.
 2) A schema and pipeline for a cross‑modal Space EW Catalog and the feasibility of carrying prioritized edge slices onboard for low‑latency decisions and intermittent downlink; edge observations and threat‑detection events update the onboard slice and, when connectivity permits, sync to the ground threat/reconnaissance catalog, with attack‑event reports and signal observations disseminated to the broader SDA community via UDL.
 3) A reusable payload‑in‑the‑loop simulation and HIL testing framework, including simulated EW attack scenarios, that can host different sensor models; in Phase I we realize the RF case.
 
@@ -24,14 +24,15 @@ Outputs include: literature/trade studies and architecture, preliminary CONOPS a
 ## Why this meets real operational needs (USSF/AIS Subtopic 2)
 - Modality‑agnostic sensor‑compute architecture (HPC‑S) that generalizes across RF, SAR/LIDAR/EO/IR/HSI; Phase I exercises the RF instantiation.
 - Integrated sensor‑compute packaging reduces detection→classification latency and preserves mission utility in comms‑degraded/denied conditions.
+- Multimodal sensor fusion at the edge combines complementary sensor modalities (RF, SAR, EO, IR, HSI) for robust threat detection and improved classification confidence, even under partial sensor degradation or denial.
 - Fusion/tip‑and‑cue design maintains custody through maneuvers across LEO/GEO/XGEO/cislunar, independent of sensor modality.
 - Evidence‑driven feasibility for edge‑hosted catalog slices and uncertainty‑aware alerts directly addresses evaluator concerns (latency, workload, trust/assurance).
 
 ## Technical approach
 ### Thread A — Modular sensor‑compute payload (Phase I RF instantiation) with on‑sensor processing and secure pathways
-- Modality‑agnostic plugin interface: define sensor‑specific front‑end/feature extractors and model containers so additional modalities can be swapped in without re‑architecture.
-- Phase I RF instantiation: COSMIAC RF front end (e.g., PIGEON heritage) feeding on‑sensor feature extraction (PDW‑like vectors) and ML threat detection, uncertainty scoring, and event triage within SWaP/radiation/thermal limits.
-- Compute options: Trade CPU/GPU/FPGA/SoC/neuromorphic candidates; early emphasis on FPGA/SoC for deterministic latency and power efficiency; plan for secure boot and signed model/config updates.
+- Modality‑agnostic plugin interface: define sensor‑specific front‑end/feature extractors and model containers so additional modalities can be swapped in without re‑architecture. Support fusion interfaces for combining multi‑modal feature streams and joint threat detection pipelines.
+- Phase I RF instantiation: COSMIAC RF front end (e.g., PIGEON heritage) feeding on‑sensor feature extraction (PDW‑like vectors) and ML threat detection, uncertainty scoring, and event triage within SWaP/radiation/thermal limits. Design fusion pathways to enable future integration of SAR/EO/IR/HSI streams for enhanced edge classification.
+- Compute options: Trade CPU/GPU/FPGA/SoC/neuromorphic candidates; early emphasis on FPGA/SoC for deterministic latency and power efficiency; plan for secure boot and signed model/config updates. Ensure compute headroom for multi‑modal fusion operations.
 - Security‑by‑design: Memory‑safe runtime pathway, zero‑trust data handling, keying and telemetry redaction suitable for ITAR/CUI contexts.
 
 ### Thread B — Cross‑modal Space EW Catalog and edge subset feasibility
@@ -134,7 +135,7 @@ By end of Phase I, SPECTRA delivers a coherent feasibility package for a reconfi
 
 ## Phase II trajectory (preview)
 - Mature HIL prototype into an integrated, flight‑like payload/processor; thermal‑vac and radiation testing; limited over‑the‑air exercises with partner ranges where permissible.
-- Expand to additional modalities (SAR/EO/IR/HSI) under the same payload‑compute framework; add on‑sensor fusion and more advanced tip‑and‑cue.
+- Expand to additional modalities (SAR/EO/IR/HSI) under the same payload‑compute framework; implement multimodal sensor fusion at the edge for joint threat detection and improved classification confidence across complementary sensor streams.
 - Extend catalog integration and on‑orbit update pathways; prepare standards alignment (e.g., CCSDS/BM‑C2) and transition artifacts.
 
 ## Commercial potential (dual‑use)
