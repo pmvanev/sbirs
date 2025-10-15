@@ -1,10 +1,14 @@
-# Integrated Phase I Scope — SIREN Sensor‑Compute Payload, Cross‑Modal Catalog, and HIL Simulation/Testing (Phase I focus: RF) (IA + COSMIAC)
+# Integrated Phase I Scope — SPECTRA Sensor-Compute Payload, Cross‑Modal Catalog, and HIL Simulation/Testing (Phase I focus: RF) (IA + COSMIAC)
+
+## Value statement
+- Catalog‑informed edge ML processing of sensor data for rapid alerting and fast, informed response
+- Automated SDA reconnaissance
 
 ## Introduction and provenance
-This integrated scope consolidates and extends scope elements in AIS/canary/scope_idea.md, aligned to AIS Subtopic 3 (Sensor Payloads) and the solicitation’s primary concerns (AIS/primary_concerns.md). It reflects IA’s background (AIS/ia.md) and COSMIAC’s capabilities (AIS/cosmiac.md), targeting a Phase I feasibility package with clear Phase II pathways.
+This integrated scope consolidates and extends scope elements in AIS/spectra/scope_idea.md, aligned to AIS Subtopic 3 (Sensor Payloads) and the solicitation’s primary concerns (AIS/primary_concerns.md). It reflects IA’s background (AIS/ia.md) and COSMIAC’s capabilities (AIS/cosmiac.md), targeting a Phase I feasibility package with clear Phase II pathways.
 
 ## Executive summary
-CANARY is a cross‑modal effort to deliver:
+SPECTRA (Sensor Processing at the Edge for Cognitive Threat Reconnaissance and Alert) is a cross‑modal effort to deliver:
 1) A modular, reconfigurable sensor‑compute payload architecture (HPC‑S) and on‑sensor analytics that apply to arbitrary in‑flight sensors; in Phase I we prototype and evaluate the feasibility of the RF path (passive RF front end) via sim/HIL runs and initial bench snapshots, while keeping interfaces modality‑agnostic.
 2) A schema and pipeline for a cross‑modal Space EW Catalog and the feasibility of carrying prioritized edge slices onboard for low‑latency decisions and intermittent downlink.
 3) A reusable payload‑in‑the‑loop simulation and HIL testing framework, including simulated EW attack scenarios, that can host different sensor models; in Phase I we realize the RF case.
@@ -106,7 +110,7 @@ T6 — Phase II Design & Transition Readiness Outline (M6): prototype maturation
 - Robustness/trust: maintain alert quality under simulated EW attack injectors; signed update/config pathway matured for flight‑like prototypes.
 
 ## Proposed Phase I final outcome
-By end of Phase I, CANARY delivers a coherent feasibility package for a reconfigurable sensor‑compute payload (Phase I RF instantiation) that produces uncertainty‑aware, downlink‑efficient products and grows a cross‑modal Space EW Catalog:
+By end of Phase I, SPECTRA delivers a coherent feasibility package for a reconfigurable sensor‑compute payload (Phase I RF instantiation) that produces uncertainty‑aware, downlink‑efficient products and grows a cross‑modal Space EW Catalog:
 - Feasibility study and trades: payload and compute selections; catalog slice viability; security/update pathway.
 - Preliminary CONOPS and architecture: end‑to‑end design for contested space operations; integration‑ready interface schemas.
 - M&S + HIL evidence: latency/power/thermal profiles; uncertainty calibration; robustness to simulated EW attack scenarios.
