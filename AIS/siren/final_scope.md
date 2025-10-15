@@ -1,4 +1,4 @@
-# Integrated Phase I Scope — CANARY Sensor‑Compute Payload, Cross‑Modal Catalog, and HIL Simulation/Testing (Phase I focus: RF) (IA + COSMIAC)
+# Integrated Phase I Scope — SIREN Sensor‑Compute Payload, Cross‑Modal Catalog, and HIL Simulation/Testing (Phase I focus: RF) (IA + COSMIAC)
 
 ## Introduction and provenance
 This integrated scope consolidates and extends scope elements in AIS/canary/scope_idea.md, aligned to AIS Subtopic 3 (Sensor Payloads) and the solicitation’s primary concerns (AIS/primary_concerns.md). It reflects IA’s background (AIS/ia.md) and COSMIAC’s capabilities (AIS/cosmiac.md), targeting a Phase I feasibility package with clear Phase II pathways.
