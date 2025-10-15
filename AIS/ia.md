@@ -114,7 +114,6 @@ Interactive Aptitude has extensive experience in multi-agent reinforcement learn
 - Victor Bajenaru — Chief Operating Officer
 - Chris Wheeler — Chief Technology Officer
 - Eran Swears, PhD — Chief Growth Officer
-- Deborah Botkin — Principal Research Engineer
 - Maxwell Calkin — Software Engineer
 - Matt Folsom — Principal Research Engineer
 - Phil Van Every — Principal Software Engineer
