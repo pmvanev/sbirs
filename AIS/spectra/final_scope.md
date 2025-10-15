@@ -10,7 +10,7 @@ This integrated scope consolidates and extends scope elements in AIS/spectra/sco
 ## Executive summary
 SPECTRA (Sensor Processing at the Edge for Cognitive Threat Reconnaissance and Alert) is a cross‑modal effort to deliver:
 1) A modular, reconfigurable sensor‑compute payload architecture (HPC‑S) and on‑sensor analytics that apply to arbitrary in‑flight sensors; in Phase I we prototype and evaluate the feasibility of the RF path (passive RF front end) via sim/HIL runs and initial bench snapshots, while keeping interfaces modality‑agnostic.
-2) A schema and pipeline for a cross‑modal Space EW Catalog and the feasibility of carrying prioritized edge slices onboard for low‑latency decisions and intermittent downlink.
+2) A schema and pipeline for a cross‑modal Space EW Catalog and the feasibility of carrying prioritized edge slices onboard for low‑latency decisions and intermittent downlink; edge observations and threat‑detection events update the onboard slice and, when connectivity permits, sync to the ground threat/reconnaissance catalog, with attack‑event reports and signal observations disseminated to the broader SDA community via UDL.
 3) A reusable payload‑in‑the‑loop simulation and HIL testing framework, including simulated EW attack scenarios, that can host different sensor models; in Phase I we realize the RF case.
 
 Integration at a glance (Phase I feasibility):
