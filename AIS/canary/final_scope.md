@@ -9,6 +9,12 @@ CANARY is a cross‑modal effort to deliver:
 2) A schema and pipeline for a cross‑modal Space EW Catalog and the feasibility of carrying prioritized edge slices onboard for low‑latency decisions and intermittent downlink.
 3) A reusable payload‑in‑the‑loop simulation and HIL testing framework, including simulated EW attack scenarios, that can host different sensor models; in Phase I we realize the RF case.
 
+Integration at a glance (Phase I feasibility):
+- Edge ML threat detection from COSMIAC/PIGEON
+- Edge processing hardware from COSMIAC
+- Database/catalog techniques from IA (edge slices and ground integration, e.g., OmniCat where permissible)
+- Simulation and HIL capabilities from IA (sensor‑agnostic harness with EW attack injectors)
+
 Outputs include: literature/trade studies and architecture, preliminary CONOPS and system diagrams, payload‑in‑the‑loop M&S evidence with quantitative metrics, a HIL bench plan with initial results, risk register with CTEs, and a Phase II plan for a bench/flight‑like prototype.
 
 ## Why this meets real operational needs (USSF/AIS Subtopic 2)
@@ -20,7 +26,7 @@ Outputs include: literature/trade studies and architecture, preliminary CONOPS a
 ## Technical approach
 ### Thread A — Modular sensor‑compute payload (Phase I RF instantiation) with on‑sensor processing and secure pathways
 - Modality‑agnostic plugin interface: define sensor‑specific front‑end/feature extractors and model containers so additional modalities can be swapped in without re‑architecture.
-- Phase I RF instantiation: COSMIAC RF front end (e.g., PIGEON heritage) feeding on‑sensor feature extraction (PDW‑like vectors), uncertainty scoring, and event triage within SWaP/radiation/thermal limits.
+- Phase I RF instantiation: COSMIAC RF front end (e.g., PIGEON heritage) feeding on‑sensor feature extraction (PDW‑like vectors) and ML threat detection, uncertainty scoring, and event triage within SWaP/radiation/thermal limits.
 - Compute options: Trade CPU/GPU/FPGA/SoC/neuromorphic candidates; early emphasis on FPGA/SoC for deterministic latency and power efficiency; plan for secure boot and signed model/config updates.
 - Security‑by‑design: Memory‑safe runtime pathway, zero‑trust data handling, keying and telemetry redaction suitable for ITAR/CUI contexts.
 
@@ -109,7 +115,7 @@ By end of Phase I, CANARY delivers a coherent feasibility package for a reconfig
 
 ## Roles, workshare, and facilities (STTR‑compliant)
 - COSMIAC (UNM)
-  - RF front‑end design/integration (PIGEON heritage), radiation test planning/mitigation, FPGA acceleration options, smallsat/ground‑station integration, environmental testing.
+  - RF front‑end design/integration (PIGEON heritage), edge ML threat detection prototyping leveraging PIGEON heritage, radiation test planning/mitigation, FPGA acceleration options, smallsat/ground‑station integration, environmental testing.
   - HIL bench setup and execution; bench hardware/instrumentation; power/thermal profiling; support security/update feasibility and interface schema validation; IA provides HIL control software.
 - Interactive Aptitude (IA)
   - Simulation development: sensor‑agnostic payload‑in‑the‑loop simulation framework and scenario packs (NGSX integration), synthetic RF scene generation via EMoP‑like approaches and red‑team EW attack injectors; HIL orchestration/control software and data collection pipelines.
