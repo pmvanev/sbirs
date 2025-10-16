@@ -1,124 +1,107 @@
 ## SPECTRA Proposal — Outline and Mapping Summary
 
 ### Executive Summary (What this proposal does)
-- Proposes SPECTRA (Sensor Processing at the Edge for Cognitive Threat Reconnaissance and Alert), a modular, reconfigurable sensor-compute (HPC-S) payload architecture with on-sensor analytics and a cross-modal Space EW Catalog that delivers catalog-informed edge ML processing for rapid threat detection, triage, and alerting across LEO-to-GEO/XGEO/cislunar missions—even under contested/comms-denied conditions.
-- Core subsystems: Modular Sensor-Compute Payload (HPC-S architecture with Phase I RF instantiation), Cross-Modal Space EW Catalog (edge slices + ground integration), Payload-in-the-Loop M&S + HIL Framework (sensor-agnostic harness with EW attack injectors), Multimodal Fusion & Tip-and-Cue Interfaces (modality-agnostic schemas), Security-by-Design Update Pathway (signed models/configs, memory-safe runtime).
-- Validates feasibility in Phase I via RF instantiation: payload-in-the-loop simulation with synthetic EW scenes and red-team attack injectors, HIL bench snapshots with AWG-stimulated scenarios, and metrics tied to latency, power/thermal/SWaP, uncertainty calibration, catalog slice viability, and robustness. Targets integration with SDA architecture and UDL dissemination.
+- Proposes a reconfigurable, modality-agnostic sensor-compute payload (HPC-S) with edge ML threat detection, multimodal sensor fusion, and a cross-modal Space EW Catalog to accelerate threat detection, triage, and decision-making in contested/comms-denied space operations.
+- Core subsystems: Modular Sensor-Compute Payload (Phase I RF instantiation), Cross-Modal Space EW Catalog with edge slices, Payload-in-the-Loop M&S and HIL framework with EW attack injectors, Integration-Ready Interfaces and CONOPS, and Uncertainty-Aware Alert and Evidence Packaging.
+- Validates feasibility in Phase I via RF instantiation with simulation, HIL bench snapshots, latency/power/thermal profiling, and uncertainty calibration. Targets integration with SDA community and future multimodal expansion (SAR/EO/IR/HSI).
 
 ---
 
 ### Section-by-Section Outline
-1) Front Matter
-- Volume and Title: "Volume 2: Technical Volume"; Title: "SPECTRA: Sensor Processing at the Edge for Cognitive Threat Reconnaissance and Alert".
 
-2) 1.0 Description of Proposed Phase I Technical Effort
-- Problem: Current space EW reconnaissance suffers from detection→classification latency due to ground-loop dependencies; static sensor architectures lack reconfigurability for evolving threats; comms-degraded/denied conditions leave operators blind; fragmented data across modalities prevents timely custody and tip-and-cue; operator workload overwhelms staff during surge/crisis phases.
-- Scenario: Automated SDA Reconnaissance and Rapid Threat Alerting Across LEO/GEO/XGEO/Cislunar Orbits Under Contested Comms.
-- Proposed Solution (five innovations):
-  - Modular Sensor-Compute Payload (HPC-S): modality-agnostic plugin architecture with Phase I RF instantiation (passive RF front end + on-sensor ML threat detection/triage).
-  - Cross-Modal Space EW Catalog: schema and pipeline for edge slices onboard + ground integration; edge observations update catalog entries and sync to ground when connectivity permits; attack-event reports and signal observations disseminated via UDL.
-  - Payload-in-the-Loop M&S + HIL Framework: sensor-agnostic simulation/HIL harness with EW attack injectors; Phase I realizes RF case with synthetic scenes and AWG-stimulated bench snapshots.
-  - Multimodal Fusion & Tip-and-Cue Interfaces: modality-agnostic schemas for edge summaries/evidence, health telemetry, and operator digests; fusion pathways for future RF/SAR/EO/IR/HSI integration.
-  - Security-by-Design Update Pathway: signed model/config updates, memory-safe runtime, zero-trust data handling suitable for ITAR/CUI contexts.
-- Figures/Tables: Figure 1 (system architecture: sensor→edge compute→fusion/tip-and-cue→downlink→catalog growth). Table 1 (degree of innovation). Table 2 (AIS Subtopic 2 alignment).
-- Team: IA (simulation, catalog, edge AI, NGSX integration) + COSMIAC (RF front-end, FPGA acceleration, radiation testing, smallsat integration); goal is a Phase I feasibility package demonstrating latency/workload improvements and custody gains with clear Phase II pathways.
+1) **Front Matter**
+   - Volume and Title: "Volume 2: Technical Volume"; Title: "SPECTRA: Sensor Processing at the Edge for Cognitive Threat Reconnaissance and Alert".
 
-3) 1.01 Technical Approach
-- Integrated, modular architecture ingesting RF (Phase I) and future SAR/EO/IR/HSI streams; modality-agnostic plugin interfaces for front-end/feature extractors/model containers; edge processing within SWaP/radiation/thermal limits; secure boot and signed updates.
-- Subsections (each with challenge + DoI):
-  1. Modular Sensor-Compute Payload (HPC-S) — Phase I RF instantiation with COSMIAC RF front end (PIGEON heritage) feeding on-sensor feature extraction (PDW-like vectors) and ML threat detection/uncertainty scoring/event triage; compute trades (CPU/GPU/FPGA/SoC/neuromorphic) with early emphasis on FPGA/SoC for deterministic latency and power efficiency; plugin API realized (stubs + example RF plugin); addresses detection→classification latency and comms-degraded resilience (Figure 2: payload-compute packaging and plugin architecture).
-  2. Cross-Modal Space EW Catalog — modality-aware parametric/emitter/event descriptors and observation products; edge slice feasibility (prioritized onboard subsets); compact summaries (detections, PDW-like features, UQ scores, maneuver/change flags) and evidence snippets for downlink via UDL; ground integration via OmniCat (where permissible) or unclassified scaffold with classified pathways; addresses fragmented data and operator workload (Figure 3: catalog schema and edge slice flow).
-  3. Payload-in-the-Loop M&S + HIL Framework — sensor-agnostic simulation/HIL harness; RF payload model integrated into IA's NGSX scenarios for SDA/RPO; synthetic RF scenes using EWIRDB-like parametric threat models via EMoP-like process; AWG-stimulated HIL with simulated EW attack scenarios; uncertainty-gated decisions using SIERO-like methods; addresses feasibility validation and robustness to adversarial conditions (Figure 4: simulation/HIL architecture and scenario packs).
-  4. Multimodal Fusion & Tip-and-Cue Interfaces — modality-agnostic schemas for edge summaries/evidence, health telemetry, and operator digests; fusion interfaces for combining multi-modal feature streams (RF/SAR/EO/IR/HSI) and joint threat detection pipelines; tip-and-cue schema (lightweight cue message: target/time/confidence/spec) for cross-sensor tasking; hooks for future standards alignment (CCSDS/BM-C2); addresses integration readiness and Phase II expansion (Figure 5: interface schemas and fusion pathways).
-  5. Security-by-Design Update Pathway — memory-safe runtime pathway, zero-trust data handling, keying and telemetry redaction suitable for ITAR/CUI contexts; signed model/config updates; certifiable update concept appropriate to Phase I feasibility; addresses trust/assurance and transition readiness.
+2) **1.0 Description of Proposed Phase I Technical Effort**
+   - Problem: Current space EW systems suffer from high detection→classification latency, operator workload bottlenecks, and custody gaps in comms-denied conditions; single-modality sensors miss complementary threat signatures; ground-centric processing delays decisions.
+   - Scenario: Contested space operations with RF/EW threats, bandwidth constraints, and maneuvering targets across LEO/GEO/XGEO/cislunar; operators need rapid, uncertainty-aware alerts and multimodal fusion to maintain custody and confidence.
+   - Proposed Solution (five innovations):
+     - Modular Sensor-Compute Payload: reconfigurable, modality-agnostic plugin architecture for RF/SAR/EO/IR/HSI with deterministic latency and SWaP efficiency.
+     - Cross-Modal Space EW Catalog: schema and edge slices for compact, downlink-efficient threat descriptors and observation products.
+     - Payload-in-the-Loop M&S: sensor-agnostic simulation harness with synthetic EW scenes and red-team attack injectors.
+     - HIL Testing Framework: AWG-stimulated bench validation with latency/power/thermal profiling and uncertainty calibration.
+     - Integration-Ready Interfaces: modality-agnostic schemas for edge summaries, operator digests, and future standards alignment (CCSDS/BM-C2).
+   - Figures/Tables: Figure 1 (system architecture, end-to-end flow). Table 1 (degree of innovation). Table 2 (topic/AIS requirement alignment).
+   - Team: COSMIAC (RF front-end, edge ML, FPGA, radiation expertise) + IA (simulation, catalog, HIL orchestration, autonomy/AI background).
 
-4) 1.02 Alignment with AIS Subtopic 2 Requirements
-- Table 2 maps AIS Subtopic 2 (Sensor Payloads) requirements to solution elements:
-  - Integrated Sensor-Compute (HPC-S) → Modular Sensor-Compute Payload delivers on-sensor analytics within SWaP/rad/thermal limits.
-  - Multimodal Sensor Fusion → Fusion interfaces enable joint RF/SAR/EO/IR/HSI processing at the edge for enhanced threat detection and classification confidence.
-  - Reconfigurability → Modality-agnostic plugin architecture supports swappable sensor front-ends and model containers without re-architecture.
-  - Edge AI/ML → On-sensor ML threat detection, uncertainty scoring, and event triage reduce detection→classification latency.
-  - Catalog-Informed Processing → Cross-Modal Space EW Catalog edge slices enable low-latency decisions and intermittent downlink; edge observations update catalog entries.
-  - Comms-Degraded/Denied Resilience → Edge processing and onboard catalog slices preserve mission utility under contested comms; offline fallback and post-recovery re-synchronization.
-  - Custody & Tip-and-Cue → Fusion/tip-and-cue design maintains custody through maneuvers across LEO/GEO/XGEO/cislunar; rapid alerts and cross-sensor tasking.
-  - Operator Workload Reduction → Onboard triage and operator digests reduce workload; uncertainty-aware alerts improve trust.
-  - Security & Transition Readiness → Signed updates, memory-safe runtime, zero-trust data handling; integration-ready interfaces and preliminary standards fit (CCSDS/BM-C2).
-  - Unclassified Phase I / Classified Readiness → Phase I uses synthetic, unclassified data; future classified deployment scoped to Phase II with clear pathways.
+3) **1.01 Technical Approach**
+   - Integrated, modular architecture ingesting RF/sensor data, threat catalogs, and operational context; outputs uncertainty-aware alerts, evidence bundles, and catalog updates.
+   - Subsections (each with challenge + DoI + methods + evidence/TRL + operational impact):
+     1. Modular Sensor-Compute Payload (Phase I RF) — plugin interfaces, deterministic latency, SWaP/rad/thermal budgets; addresses latency and single-modality blindness.
+     2. Cross-Modal Space EW Catalog Schema — compact descriptors, edge slice feasibility, compression/retrieval; addresses downlink efficiency and onboard decision support.
+     3. Payload-in-the-Loop M&S with EW Attack Injectors — synthetic RF scenes, red-team stress, uncertainty calibration; addresses feasibility validation and robustness.
+     4. HIL Testing Framework — AWG-stimulated bench, timing/power/thermal snapshots, signed-config emulation; addresses deterministic latency and security readiness.
+     5. Integration-Ready Interfaces and Operator Digests — modality-agnostic schemas, preliminary standards fit; addresses Phase II integration and operator trust.
 
-5) 1.03 Data, Evaluation, & Metrics
-- Data: Synthetic RF scenes (EWIRDB-like parametric threat models via EMoP-like process); AWG-stimulated HIL scenarios with simulated EW attack injectors; bench traces for uncertainty calibration; lab/test data where available.
-- Metrics: per-component and system-level metrics with success criteria and methods.
-- Table 3: metrics/goals/methods for each innovation/component and the integrated system:
-  - Modular Sensor-Compute Payload — Edge pipeline latency/jitter bounds (bench-measured, repeatable); power/thermal/SWaP (bench snapshots + modeled envelopes); plugin API validation (stubs + example RF plugin); signed-config/update concept documented and emulated in bench loop. Success: latency/jitter bounds close for selected configurations; power/thermal margins positive; plugin API round-trip validated.
-  - Cross-Modal Space EW Catalog — Slice storage footprint, compression ratio, retrieval latency; downlink bundle sizes for alert/evidence; schema validated with at least two modality exemplars (design-time), RF realized in Phase I. Success: slice viability demonstrated (footprint, compression, retrieval latency within targets); schema round-trip checks pass.
-  - Payload-in-the-Loop M&S + HIL Framework — Sim/HIL harness executes RF scenarios with EW attack injectors; AWG-stimulated bench snapshots captured; uncertainty calibration curves (ECE/Brier) reported; stability demonstrated across scenario packs. Success: harness operational; uncertainty calibration targets attained; no safety-invariant violations in stress tests.
-  - Multimodal Fusion & Tip-and-Cue Interfaces — Schemas validated via round-trip examples; operator digest exemplars produced; preliminary standards-fit notes compiled. Success: schemas conformance tests pass; sample digests generated; standards-fit documented.
-  - Security-by-Design Update Pathway — Signed-config/update concept documented and emulated in bench loop; memory-safe runtime pathway validated. Success: update concept feasible; runtime pathway demonstrated.
-  - Integrated System — Simulated end-to-end detection→triage→alert latency vs. ground-loop baseline in controlled scenarios (report observed improvements with confidence bounds); false-alert rates under red-teamed simulated EW attack injectors; trace capture for V&V. Success: latency improvements observed; false-alert rates within acceptable bounds; traces captured.
+4) **1.02 Alignment with Topic Requirements (AIS Subtopic 2)**
+   - Table 2 maps AIS requirements (integrated sensor-compute, multimodal fusion, reconfigurability, HPC-S, latency reduction, operator workload, custody, comms-denied resilience, unclassified Phase I, IA/classified readiness, transition/integration readiness) to solution elements.
 
-6) 2.0 Phase I Technical Objectives
-- Objective 1: Modular Sensor-Compute Payload (Phase I RF instantiation) — R&D questions: What modality-agnostic plugin interfaces are required (front-end, feature extractors, model containers)? What deterministic latency bounds are feasible on candidate SoC/FPGA under SWaP/rad/thermal? What lightweight signed config/update concept is viable for Phase I? Feasibility determination: Edge pipeline latency/jitter bounds bench-measured; plugin API realized (stubs + example RF plugin); initial power/thermal snapshots; signed-config/update concept documented and emulated in bench loop.
-- Objective 2: Cross-Modal Space EW Catalog schema + edge slice feasibility — R&D questions: What schema supports cross-modal descriptors (RF, SAR/LIDAR/EO/IR/HSI) and observation/evidence products? What slice sizes/compression achieve onboard feasibility and manageable downlink bundles? Feasibility determination: Slice storage footprint, compression ratio, and retrieval latency characterized; downlink bundle sizes for alert/evidence reported; schema validated with at least two modality exemplars (design-time), RF realized in Phase I.
-- Objective 3: Payload-in-the-Loop M&S + HIL harness with EW attack injectors — R&D questions: What simulation fidelity is sufficient for Phase I custody/latency insights? How do EWIRDB-like/EMoP-like generators and red-team injectors drive realistic stress? What uncertainty calibration targets are attainable? Feasibility determination: Sim/HIL harness executes RF scenarios with EW attack injectors; AWG-stimulated bench snapshots captured; uncertainty calibration curves (ECE/Brier) reported; stability demonstrated across scenario packs.
-- Objective 4: Multimodal Fusion & Tip-and-Cue Interfaces — R&D questions: What modality-agnostic schemas (summaries/evidence/health) and operator digest formats best support Phase II integration? What preliminary standards fit (e.g., CCSDS/BM-C2) can be documented without Phase I compliance? Feasibility determination: Schemas validated via round-trip examples; operator digest exemplars produced; preliminary standards-fit notes compiled.
-- Objective 5: Security-by-Design Update Pathway — R&D questions: What memory-safe runtime pathway and signed model/config update concept are viable for Phase I feasibility? What zero-trust data handling and telemetry redaction are appropriate to ITAR/CUI contexts? Feasibility determination: Signed-config/update concept documented and emulated in bench loop; memory-safe runtime pathway validated; zero-trust data handling approach documented.
-- Objective 6: Integrated Feasibility and Security Readiness Review — R&D questions: What integrated simulations demonstrate end-to-end latency/workload improvements and custody gains? What initial cybersecurity docs and transition artifacts are required? Feasibility determination: Integrated simulations executed; latency/workload improvements and custody gains quantified with confidence bounds; initial cybersecurity docs (RMF/NIST 800-171 posture) and Phase II planning artifacts delivered.
+5) **1.03 Data, Evaluation, & Metrics**
+   - Data: synthetic RF scenes (EWIRDB-like parametric models), lab/test data where available, simulated EW attack scenarios, bench traces.
+   - Metrics: per-component (latency/jitter, power/thermal, uncertainty calibration, slice viability, interface conformance) and system-level (end-to-end detection→alert latency, false-alert rates, robustness under stress).
+   - Table 3: metrics/goals/methods for Payload, Catalog, M&S/HIL, Interfaces, and integrated system.
 
-7) 3.0 Phase I Statement of Work (Base and Option)
-- Table 4 (Base, 6 months): T1 Kickoff + Feasibility Plan (M1) — finalize objectives, simulation/HIL plans, dataset/signal scope; T2 Architecture & Catalog Schema Trades (M2–M3) — plugin interfaces; catalog schema + slice/compression trades; compute trades (CPU/GPU/FPGA/SoC/neuromorphic); T3 Simulation Harness + Scenario Packs (M3–M4) — RF payload-in-the-loop integration; EW attack injectors; uncertainty calibration plan; synthetic RF scenes via EMoP-like process; T4 HIL Plan + Initial Bench Snapshots (M4–M5) — AWG-stimulated runs; timing/power/thermal snapshots; signed-config emulation; T5 Feasibility Indicators + Evidence Package (M5–M6) — latency/jitter, calibration curves, slice viability, interface validation; trace capture for V&V; T6 Phase II Design & Transition Readiness Outline (M6) — prototype maturation plan; standards-fit and integration roadmap; initial cybersecurity docs.
-- Table 5 (Option, 6 months): T7 Advance Sensor-Compute Payload & Security Pathway (M7–M9) — mature plugin API; expand compute trades; harden signed-config/update pathway; radiation/thermal stress testing; T8 Expand Catalog & Fusion Interfaces (M8–M10) — extend catalog schema for additional modality exemplars (design-time); implement fusion interface stubs; operator digest refinement; T9 Mid-Fidelity HIL Prototype (M9–M11) — integrated HIL bench with multi-scenario packs; uncertainty calibration refinement; robustness to adversarial conditions; T10 Architecture & Security Planning (M10–M12) — preliminary RMF/NIST 800-171 posture; integration-ready interface documentation; Phase II flight-like prototype plan; limited over-the-air exercise scoping.
-- Forward look to Phase II: integrated operational system with flight-like payload/processor; thermal-vac and radiation testing; limited over-the-air exercises with partner ranges where permissible; expand to additional modalities (SAR/EO/IR/HSI) under the same payload-compute framework; implement multimodal sensor fusion at the edge for joint threat detection and improved classification confidence; extend catalog integration and on-orbit update pathways; prepare standards alignment (CCSDS/BM-C2) and transition artifacts; multi-classification security path.
+6) **2.0 Phase I Technical Objectives**
+   - Objective 1: Modular Sensor-Compute Payload (RF instantiation) — R&D questions on plugin interfaces, deterministic latency bounds, SWaP/rad/thermal feasibility, signed-config update concept.
+   - Objective 2: Cross-Modal Space EW Catalog Schema + Edge Slice Feasibility — R&D questions on modality-agnostic descriptors, slice sizes/compression, downlink bundle efficiency.
+   - Objective 3: Payload-in-the-Loop M&S + HIL Harness with EW Attack Injectors — R&D questions on simulation fidelity, red-team stress realism, uncertainty calibration targets.
+   - Objective 4: Interfaces, Operator Digests, and Integration Readiness — R&D questions on modality-agnostic schemas, standards fit (CCSDS/BM-C2), Phase II integration pathways.
+   - Objective 5: Robustness and Assurance — R&D questions on adversarial resilience, false-alert rates under EW attacks, memory-safe runtime pathway.
+   - Objective 6: Integrated Feasibility and Phase II Readiness — integrated demo(s), risk register with CTEs, Phase II roadmap for multimodal expansion and flight-like prototype.
 
-8) 1.3 Related Work
-- Table 6: Interactive Aptitude's related work (DARPA programs: ACK/ARAKNID, SAIL-ON, PerSEAS, etc.; edge AI and simulation capabilities; OmniCat catalog integration where permissible); COSMIAC's related work (PIGEON RF front-end heritage, smallsat/ground-station integration, radiation testing, FPGA acceleration); commercialization examples (RF anomaly detection for unclassified space operations, safety-critical RF anomaly detection for automotive/maritime/aviation, HIL simulation/test toolchains for EW robustness evaluations).
+7) **3.0 Phase I Statement of Work (Base and Option)**
+   - Table 4 (Base, 6 months): T1 Kickoff + Feasibility Plan; T2 Architecture & Catalog Schema Trades; T3 Simulation Harness + Scenario Packs; T4 HIL Plan + Initial Bench Snapshots; T5 Feasibility Indicators + Evidence Package; T6 Phase II Design & Transition Readiness.
+   - Table 5 (Option, 6 months): T7 Advance Payload Compute Trades & Signed-Config Emulation; T8 Expand Catalog Slice Compression & Retrieval; T9 Mid-Fidelity Operator Digest Prototyping; T10 Architecture & Security Planning for Phase II.
+   - Forward look to Phase II: multimodal sensor fusion (SAR/EO/IR/HSI), flight-like prototype, thermal-vac and radiation testing, limited over-the-air exercises, standards alignment.
 
-9) 2.0 Key Personnel
-- Table 7: PI (IA) and key SMEs (IA: simulation, catalog, edge AI, NGSX integration, EMoP-like/SIERO-like methods; COSMIAC: RF front-end, FPGA acceleration, radiation testing, smallsat integration) with relevant expertise and prior DoD/DARPA/USSF work.
+8) **1.3 Related Work**
+   - Table 6: Prior work (COSMIAC PIGEON heritage, IA autonomy/simulation programs, space EW catalogs, edge ML frameworks, HIL/M&S tools); differentiation (modality-agnostic plugin architecture, integrated sensor-compute-catalog flow, uncertainty-aware edge decisions).
 
-10) 3.0 Commercialization/Transition Plan Summary
-- 3.1 Overview; 3.1.1 DoD/USSF transition pathway (SDA architecture, UDL dissemination, integration with existing C2 systems); 3.1.2 transition plan by phase (Phase I: feasibility package with RF instantiation; Phase II: flight-like prototype, thermal-vac/radiation testing, limited over-the-air exercises, multimodal expansion; Phase III: operational deployment, standards alignment, multi-classification security); 3.1.3 engagement strategy (USSF SDA, Space Systems Command, AFRL, DIU, NIWC Pacific, partner ranges for over-the-air exercises); 3.1.4 commercial expansion (RF anomaly detection for unclassified space operations and commercial constellation operators; safety-critical RF anomaly detection for automotive, maritime, aviation, and critical infrastructure; HIL simulation/test toolchains for EW robustness evaluations; training products for operations and test teams); 3.1.5 competitive differentiation (catalog-informed edge ML processing, modality-agnostic reconfigurable architecture, uncertainty-aware alerts, multimodal sensor fusion at the edge, comms-degraded/denied resilience, integration-ready interfaces); 3.1.6 risks/mitigation (SWaP/thermal/radiation: derive budgets/margins, evaluate rad-tolerant compute, prototype thermal throttling and graceful degradation; blind spots/cislunar ranges: design for multi-modal expansion in Phase II, tip-and-cue threads and dynamic scheduling to sustain custody; data poisoning/robustness: onboard anomaly detection, signed models/configs, uncertainty-gated autonomy, simulation-based red-teaming in NGSX using SIERO-like methods; integration complexity: modular interfaces for sensor-compute packages, memory-safe implementations and deterministic latency paths, early interface schema definition); 3.1.7 revenue/scaling (licensing model for catalog products and HIL toolchains; SaaS model for commercial RF anomaly detection; training/support contracts for operations and test teams).
-- Table 9: commercialization timeline milestones (Q4 2025: Phase I feasibility package delivered; Q2 2026: Phase II kickoff, flight-like prototype design; Q4 2026: thermal-vac/radiation testing complete; Q2 2027: limited over-the-air exercises; Q4 2027: Phase II delivery, multimodal expansion demonstrated; Q2 2028: Phase III transition planning, standards alignment; Q4 2028: operational deployment readiness).
+9) **2.0 Key Personnel**
+   - Table 7: PI and key SMEs (COSMIAC RF/FPGA/radiation expertise, IA simulation/autonomy/AI expertise) with relevant DoD/DARPA/space programs and publications.
 
-11) 4.0 Facilities/Equipment
-- Computing resources (IA: NGSX simulation infrastructure, edge AI development clusters, OmniCat catalog integration testbed; COSMIAC: RF bench/HIL instrumentation, AWG, FPGA development kits, radiation test facilities, smallsat integration lab); cloud usage (AWS/Azure for simulation scaling and catalog prototyping; secure enclaves for ITAR/CUI data handling); facility clearance (IA: unclassified with ITAR/CUI handling procedures; COSMIAC: unclassified with radiation/environmental test facilities); security controls (RMF/NIST 800-171 posture, RBAC/MFA, FIPS 140-2 encryption, signed model/config updates, memory-safe runtime pathway); secure facilities access (IA: controlled access to edge AI development and catalog integration testbeds; COSMIAC: controlled access to RF bench/HIL and radiation test facilities).
+10) **3.0 Commercialization/Transition Plan Summary**
+    - 3.1 Overview; 3.1.1 DoD/USSF transition pathway; 3.1.2 transition plan by phase (Phase I–III); 3.1.3 engagement strategy (USSF, NRO, commercial constellation operators, SDA community); 3.1.4 commercial/dual-use expansion (RF anomaly detection, safety-critical applications, HIL/test toolchains); 3.1.5 competitive differentiation (modality-agnostic architecture, edge-hosted catalog, uncertainty-aware decisions, multimodal fusion); 3.1.6 risks/mitigations (SWaP/thermal/radiation, integration complexity, data poisoning); 3.1.7 revenue/scaling model.
+    - Table 9: commercialization timeline milestones (Q4 2025 – Q4 2027).
 
-12) 5.0 References
-- Citations to prior work (IA: DARPA programs, edge AI, simulation, OmniCat; COSMIAC: PIGEON, smallsat, radiation testing), standards (CCSDS, BM-C2, NIST 800-171, RMF, FIPS 140-2), and relevant literature (EW threat models, edge ML, uncertainty quantification, multimodal sensor fusion, space domain awareness).
+11) **4.0 Facilities/Equipment**
+    - Computing resources (COSMIAC lab, IA cloud/on-prem), HIL bench hardware (AWG, instrumentation), simulation infrastructure (NGSX integration), security controls (memory-safe runtime, signed updates, NIST/FIPS as applicable).
+
+12) **5.0 References**
+    - Citations covering RF payloads, edge ML, sensor fusion, space EW, catalog systems, uncertainty quantification, and relevant standards.
 
 ---
 
 ### Content Mapping (Crosswalk)
-- Problem Context → 1.0; Scenario (Automated SDA Reconnaissance and Rapid Threat Alerting Across LEO/GEO/XGEO/Cislunar Orbits Under Contested Comms) → 1.0; Figure 1 illustrates architecture (sensor→edge compute→fusion/tip-and-cue→downlink→catalog growth).
+- Problem Context → 1.0; Scenario (contested space ops, comms-denied, multimodal threats) → 1.0; Figures 1–3 illustrate architecture, payload, and operator digest.
 - Innovation Modules → 1.01 subsections:
-  - Modular Sensor-Compute Payload (HPC-S) → on-sensor analytics within SWaP/rad/thermal limits; meets: Integrated Sensor-Compute, Reconfigurability, Edge AI/ML, Comms-Degraded/Denied Resilience.
-  - Cross-Modal Space EW Catalog → edge slices + ground integration; meets: Catalog-Informed Processing, Operator Workload Reduction, Custody & Tip-and-Cue.
-  - Payload-in-the-Loop M&S + HIL Framework → sensor-agnostic harness with EW attack injectors; meets: Feasibility Validation, Robustness to Adversarial Conditions.
-  - Multimodal Fusion & Tip-and-Cue Interfaces → modality-agnostic schemas; meets: Multimodal Sensor Fusion, Custody & Tip-and-Cue, Security & Transition Readiness.
-  - Security-by-Design Update Pathway → signed updates, memory-safe runtime; meets: Security & Transition Readiness, Trust/Assurance.
-- Topic Compliance → 1.02 Table 2 explicitly maps AIS Subtopic 2 requirements to solution elements; includes comms-degraded/denied resilience and unclassified Phase I compliance with classified pathways.
-- Evaluation Plan → 1.03 Table 3 defines metrics, methods, and success criteria.
-- Technical Objectives → 2.0 enumerates six objectives with R&D questions and feasibility determination criteria aligned to modules and integration.
+  - Modular Sensor-Compute Payload → reconfigurable, deterministic latency; meets: Integrated Sensor-Compute, Reconfigurability, HPC-S, Latency Reduction.
+  - Cross-Modal Space EW Catalog → edge slices, downlink efficiency; meets: Multimodal Fusion Support, Operator Workload Reduction, Comms-Denied Resilience.
+  - Payload-in-the-Loop M&S → synthetic scenes, red-team stress; meets: Feasibility Validation, Robustness/Trust, Uncertainty Calibration.
+  - HIL Testing Framework → bench validation, timing/power/thermal; meets: Deterministic Latency, SWaP Efficiency, Security Readiness.
+  - Integration-Ready Interfaces → modality-agnostic schemas, standards fit; meets: Phase II Integration, Operator Trust, Transition Readiness.
+- Topic Compliance → 1.02 Table 2 explicitly maps AIS requirements to solution elements; includes unclassified Phase I compliance and classified Phase II readiness.
+- Evaluation Plan → 1.03 Table 3 defines metrics/methods/success criteria per component and system.
+- Technical Objectives → 2.0 enumerates six objectives with R&D questions and feasibility criteria aligned to modules and integration.
 - SoW & Schedule → 3.0 Tables 4–5 provide Base/Option tasks (T1–T10) and milestones.
 - Transition & Commercialization → 3.0 provides DoD/USSF pathway, engagements, dual-use markets, differentiation, risks, and revenue model; Table 9 timeline.
 - Organizational Capacity → Related Work (1.3), Key Personnel (2.0), Facilities/Equipment (4.0), and References (5.0) substantiate credibility and readiness.
 
 ---
 
-### Reuse Notes (for writing the full proposal)
-- Open with a strong problem-context + scenario (Automated SDA Reconnaissance and Rapid Threat Alerting Across LEO/GEO/XGEO/Cislunar Orbits Under Contested Comms) that directly motivates the feature set and evaluation plan.
-- Define 5 named innovations; for each: challenge, DoI/novelty, methods, evidence/TRLs, and operational impact. Include figures (architecture, payload-compute packaging, catalog schema, simulation/HIL architecture, interface schemas).
-- Provide a clear AIS Subtopic 2 requirements crosswalk table early (Table 2) and a focused metrics table (Table 3).
+### Reuse Notes (for SPECTRA proposal writing)
+- Open with a strong problem-context + scenario (contested space ops, comms-denied, multimodal threats) that directly motivates the feature set and evaluation plan.
+- Define 5 named innovations; for each: challenge, DoI/novelty, methods, evidence/TRLs, and operational impact. Include figures (architecture, payload, operator digest).
+- Provide an early crosswalk table (Topic Alignment) and a focused metrics table.
 - Articulate Phase I objectives with R&D questions and feasibility determination criteria; align SoW tasks/milestones to those objectives.
-- Include transition path by phase (I/II/III), concrete stakeholder engagements (USSF SDA, Space Systems Command, AFRL, DIU, NIWC Pacific, partner ranges), and dual-use expansion logic (commercial RF anomaly detection, HIL toolchains, training products).
+- Include transition path by phase (I/II/III), concrete stakeholder engagements (USSF, NRO, SDA community), and dual-use expansion logic.
 - Close with facilities, personnel, and references to demonstrate capability and compliance.
-- Use present-tense capability framing: "SPECTRA delivers a cohesive, modular solution for automated SDA reconnaissance by integrating on-sensor analytics, catalog-informed edge ML processing, and multimodal sensor fusion at the edge."
-- Integration-ready language: "Designed for integration with SDA architecture and UDL dissemination, the architecture also supports offline fallback and post-recovery re-synchronization."
-- Module claims: "Modular Sensor-Compute Payload addresses detection→classification latency by processing sensor streams at the edge within SWaP/rad/thermal limits"; "Cross-Modal Space EW Catalog forecasts operator overload using onboard triage and uncertainty-aware alerts"; "Payload-in-the-Loop M&S + HIL Framework validates feasibility via synthetic EW scenes and red-team attack injectors with success measured by latency, uncertainty calibration, and robustness."
-- Compliance/fit: "Directly satisfies AIS Subtopic 2 requirements"; "Phase I uses synthetic, unclassified data; future classified deployment scoped to Phase II."
-- Evaluation framing: "Phase I validates feasibility via payload-in-the-loop simulations and HIL bench snapshots with success measured by latency/jitter bounds, power/thermal/SWaP, uncertainty calibration, catalog slice viability, and robustness to simulated EW attack injectors."
+- Use present-tense capability framing ("SPECTRA delivers…", "Payload addresses…") and power verbs (accelerates, fuses, triage, calibrates, enables).
+- Emphasize integration-ready language and prototype maturity signals (TRL levels, bench evidence, simulation validation).
 
 ---
 
 ### Figures and Tables (as referenced)
-- Figures: 1 (System Architecture: sensor→edge compute→fusion/tip-and-cue→downlink→catalog growth), 2 (Payload-Compute Packaging and Plugin Architecture), 3 (Catalog Schema and Edge Slice Flow), 4 (Simulation/HIL Architecture and Scenario Packs), 5 (Interface Schemas and Fusion Pathways).
-- Tables: 1 (Degree of Innovation), 2 (AIS Subtopic 2 Alignment), 3 (Metrics), 4 (Base SoW), 5 (Option SoW), 6 (Related Work), 7 (Key Personnel), 9 (Commercialization Timeline).
+- Figures: 1 (End-to-end system architecture, sensor→edge compute→fusion→downlink→catalog), 2 (Payload block diagram, RF front-end + compute + interfaces), 3 (Operator digest and alert UI exemplar).
+- Tables: 1 (Degree of Innovation), 2 (AIS Topic/Requirement Alignment), 3 (Metrics), 4 (Base SoW), 5 (Option SoW), 6 (Related Work), 7 (Key Personnel), 9 (Commercialization Timeline).
+
