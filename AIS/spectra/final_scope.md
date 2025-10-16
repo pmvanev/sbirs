@@ -35,10 +35,18 @@ Outputs include: literature/trade studies and architecture, preliminary CONOPS a
 - Compute options: Trade CPU/GPU/FPGA/SoC/neuromorphic candidates; early emphasis on FPGA/SoC for deterministic latency and power efficiency; plan for secure boot and signed model/config updates. Ensure compute headroom for multi‑modal fusion operations.
 - Security‑by‑design: Memory‑safe runtime pathway, zero‑trust data handling, keying and telemetry redaction suitable for ITAR/CUI contexts.
 
+
+- Example RF geolocation chain (non-binding): implement time/frequency difference-of-arrival (TDOA/FDOA) with time-sync and baseline geometry in simulation/HIL; report geolocation CEP vs SNR/interferer dwell as available.
+- GEO emissions characterization (example workload): classifiers for comm/beacon signals and emissions-change detection to augment “neighborhood watch”; used to demonstrate tip-and-cue without constraining Phase I scope.
+
 ### Thread B — Cross‑modal Space EW Catalog and edge subset feasibility
 - Catalog concept: Cross‑modal Space EW Catalog with modality‑aware parametric/emitter/event descriptors and observation products; evaluate feasibility of carrying prioritized slices onboard.
 - Data products: Compact summaries (detections, PDW‑like features or analogous per‑modality features, UQ scores, maneuver/change flags) and evidence snippets for downlink (e.g., UDL) when connectivity permits.
 - Ground integration: Use/adapt existing repositories (e.g., OmniCat) where permissible; otherwise stand up an unclassified scaffold with clear pathways to classified systems; Phase I populates the RF path while keeping schema modally extensible.
+
+
+- Astrometry/POD hooks (future modalities): define placeholders for onboard centroiding and preliminary orbit determination so compact tracks can be transmitted alongside RF descriptors when optical/EO plugins are introduced.
+- Tip-and-cue schema (minimal, modality-agnostic): specify a lightweight cue message (target/time/confidence/spec) to enable cross-sensor tasking (e.g., OPIR/optical) without implementing it fully in Phase I.
 
 ### Thread C — Payload‑in‑the‑loop M&S and HIL with simulated EW attacks
 - Sensor‑agnostic framework: a reusable simulation/HIL harness that can host different sensor models and datasets; Phase I realizes the RF case.
@@ -46,10 +54,18 @@ Outputs include: literature/trade studies and architecture, preliminary CONOPS a
 - HIL: Auto‑generate PDWs via an EMoP‑like process (using EWIRDB‑like models) to stimulate hardware via AWG, including simulated EW attack scenarios; validate onboard pre‑processing thresholds and latency; compare to lab/test data where available; uncertainty‑gate decisions using SIERO‑like methods.
 - Evidence: Quantify latency improvements, power/thermal envelopes, uncertainty calibration, and robustness to adversarial conditions.
 
+- Scenario pack example — Theater GPS jamming detection & geolocation: measure detection→geolocation alert latency and geolocation accuracy (CEP) across SNR/dwell variations.
+- Scenario pack example — GEO emissions characterization: detect unusual emissions/behavior changes; measure timeliness and false-alert rates.
+- RPO (sim-only) example: emissions-based proximity cueing and keep-out zone enforcement; log relative navigation/decision latency (no commitment to optical/LIDAR in Phase I).
+
+
 ### Thread D — Architecture, CONOPS, and integration‑ready interfaces
 - System view: End‑to‑end block diagrams for sensor→edge compute→fusion/tip‑and‑cue→downlink→catalog growth.
 - Interfaces: Modality‑agnostic schemas for edge summaries/evidence, health telemetry, and operator digests; hooks for future standards alignment (e.g., CCSDS/BM‑C2) without over‑scoping Phase I.
 - Update pathway: Document a certifiable update concept (signed/config updates) appropriate to Phase I feasibility.
+
+
+- Example interface stub — OPIR↔RF cueing (documentation only in Phase I): define notional JSON/protobuf fields {obs_time, target_region, cue_type, confidence, validity, contact} to illustrate future cross-sensor tasking.
 
 ## Phase I activities and deliverables
 - Phase I focus: exercise the RF instantiation while ensuring all designs (payload, catalog, HIL) are modality‑agnostic and reusable for other sensors.
@@ -94,6 +110,11 @@ T6 — Phase II Design & Transition Readiness Outline (M6): prototype maturation
 - Robustness (EW attacks): red‑team injectors applied in sim/HIL; false‑alert rates; stability/throughput traces under stress.
 - Catalog slice viability: footprint, compression, retrieval latency; downlink bundle size for alert/evidence; schema round‑trip checks.
 - Interfaces & operator digests: schema conformance tests; sample digests; preliminary standards‑fit notes captured.
+
+
+- Geolocation accuracy: CEP50/CEP90 vs SNR and interferer dwell time (sim/HIL).
+- Alert timeline: detection→triage→geolocation latency distribution.
+- RPO (example) metric: relative nav decision latency and keep-out violation risk (sim-only).
 
 ## Phase I feasibility indicators (evidence‑focused)
 - Edge pipeline latency and jitter bounds for feature extraction/triage on candidate SoC/FPGA (bench‑measured, repeatable).
