@@ -1,7 +1,7 @@
 # Integrated Phase I Scope — SPECTRA Sensor-Compute Payload, Cross‑Modal Catalog, and HIL Simulation/Testing (Phase I focus: RF) (IA + COSMIAC)
 
 ## Value statement
-- Catalog‑informed edge ML processing of sensor data for rapid alerting and fast, informed response
+- SDA/Catalog‑informed edge ML processing of sensor data for rapid alerting and fast, informed response
 - Automated SDA reconnaissance
 
 ## Introduction and provenance

@@ -1,0 +1,22 @@
+- SPECTRA Edge DB (onboard DB hardware, SOSA compliant)
+  - maintains updatable, in flight section of SPECTRA Ground DB, receives section updates when possible and applicable
+  - provides catalog data to SPECTRA Edge Compute
+  - catalogs Event data from SPECTRA Edge Compute
+  - receives and catalogs raw observation data from sensors
+  - downlinks events/observations to SPECTRA Ground Processing when possible
+
+- SPECTRA HPC-S (onboard ML/AI/Fusion HPC-S, SOSA Compliant)
+  - receives and processes catalog data from SPECTRA Edge Compute
+  - receives and processes sensor data 
+  - performs AI/ML/data-fusion compute
+  - provides threat Event Alerts to host vehicle systems
+  - provides threat and other Event detection data to SPECTRA Edge DB
+  - downlinks Event analysis to SPECTRA Ground Processing when possible
+ 
+- SPECTRA Ground Processing (on ground SPECTRA data management
+  - receives Events and Observations from SPECTRA HPC-S and SPECTRA Edge DB
+  - Disseminates Events and Observations to databases like the UDL, and mission operations processing consumers like Welder's Arc in the SDA TAP Lab
+  - receives updated SDA intelligence from mission operations processing providers like Welder's Arc 
+  - determines proper updates based on SDA intelligence and uplinks them to SPECTRA Edge DB
+  - manages SPECTRA HPC-S updates (E.G. model weight and bias updates)
+  - handles training for new SPECTRA HPC-S models with comprehensive mission data and HIL mod/sim
