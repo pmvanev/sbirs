@@ -8,10 +8,15 @@
 This integrated scope consolidates and extends scope elements in AIS/spectra/scope_idea.md, aligned to AIS Subtopic 3 (Sensor Payloads) and the solicitation’s primary concerns (AIS/primary_concerns.md). It reflects IA’s background (AIS/ia.md) and COSMIAC’s capabilities (AIS/cosmiac.md), targeting a Phase I feasibility package with clear Phase II pathways.
 
 ## Executive summary
-SPECTRA (Sensor Processing at the Edge for Cognitive Threat Reconnaissance and Alert) is a cross‑modal effort to deliver:
-1) A modular, reconfigurable sensor‑compute payload architecture (HPC‑S) and on‑sensor analytics that apply to arbitrary in‑flight sensors; in Phase I we prototype and evaluate the feasibility of the RF path (passive RF front end) via sim/HIL runs and initial bench snapshots, while keeping interfaces modality‑agnostic. The architecture supports multimodal sensor fusion at the edge, enabling joint RF/SAR/EO/IR/HSI processing for enhanced threat detection and classification.
-2) A schema and pipeline for a cross‑modal Space EW Catalog and the feasibility of carrying prioritized edge slices onboard for low‑latency decisions and intermittent downlink; edge observations and threat‑detection events update the onboard slice and, when connectivity permits, sync to the ground threat/reconnaissance catalog, with attack‑event reports and signal observations disseminated to the broader SDA community via UDL.
-3) A reusable payload‑in‑the‑loop simulation and HIL testing framework, including simulated EW attack scenarios, that can host different sensor models; in Phase I we realize the RF case.
+SPECTRA (Sensor Processing at the Edge for Cognitive Threat Reconnaissance and Alert) is a three-tier, cross-modal architecture to deliver:
+
+1) **SPECTRA HPC-S** (onboard, SOSA-compliant ML/AI/fusion compute): A modular, reconfigurable sensor-compute payload architecture that applies to arbitrary in-flight sensors; in Phase I we prototype and evaluate the feasibility of the RF path (passive RF front end) via sim/HIL runs and initial bench snapshots, while keeping interfaces modality-agnostic. The architecture supports multimodal sensor fusion at the edge, enabling joint RF/SAR/EO/IR/HSI processing for enhanced threat detection and classification. Receives raw sensor observations, applies AI/ML and data-fusion algorithms to generate threat events and alerts, and provides event detection data to SPECTRA Edge DB.
+
+2) **SPECTRA Edge DB** (onboard, SOSA-compliant database): A schema and pipeline for a cross-modal Space EW Catalog with prioritized edge slices carried onboard for low-latency decisions and intermittent downlink. Maintains an updatable slice of the ground catalog, receives catalog updates when possible, provides catalog data to SPECTRA HPC-S for threat detection, and catalogs both raw observations and detected events. When connectivity permits, syncs to the ground threat/reconnaissance catalog, with attack-event reports and signal observations disseminated to the broader SDA community via UDL.
+
+3) **SPECTRA Ground Processing** (ground-based data management): Receives events and observations from the spacecraft, disseminates them to mission operations and the broader SDA community via UDL, determines proper catalog updates based on SDA intelligence, manages SPECTRA HPC-S model updates and training with comprehensive mission data and HIL mod/sim. Phase I focuses on CONOPS development for this tier.
+
+4) **Payload-in-the-Loop M&S and HIL Testing Framework**: A reusable simulation and HIL testing framework, including simulated EW attack scenarios, that can host different sensor models; in Phase I we realize the RF case.
 
 Integration at a glance (Phase I feasibility):
 - Edge ML threat detection from COSMIAC/PIGEON
@@ -68,7 +73,7 @@ Outputs include: literature/trade studies and architecture, preliminary CONOPS a
 - Example interface stub — OPIR↔RF cueing (documentation only in Phase I): define notional JSON/protobuf fields {obs_time, target_region, cue_type, confidence, validity, contact} to illustrate future cross-sensor tasking.
 
 ## Phase I activities and deliverables
-- Phase I focus: exercise the RF instantiation while ensuring all designs (payload, catalog, HIL) are modality‑agnostic and reusable for other sensors.
+- Phase I focus: feasibility analysis for SPECTRA HPC-S and SPECTRA Edge DB, and CONOPS development for SPECTRA Ground Processing; exercise the RF instantiation while ensuring all designs (payload, catalog, HIL) are modality-agnostic and reusable for other sensors.
 - Literature and trade studies: passive RF payloads, reconfigurable/SDR patterns, edge compute under SWaP/rad/thermal, catalog slicing/compression, and assurance/monitoring.
 - Architecture and feasibility: heterogeneous compute trades; prioritized catalog slice feasibility; memory‑safe runtime pathway; security/update concepts.
 - Payload‑in‑the‑loop M&S: synthetic EW scenes; custody/latency metrics; uncertainty calibration; ablation under comms‑degraded and maneuvering targets.
@@ -79,29 +84,33 @@ Outputs include: literature/trade studies and architecture, preliminary CONOPS a
 
 ## Phase I Technical Objectives
 
-Objective 1: Modular sensor‑compute architecture (Phase I RF instantiation)
-- R&D Questions: What modality‑agnostic plugin interfaces are required (front‑end, feature extractors, model containers)? What deterministic latency bounds are feasible on candidate SoC/FPGA under SWaP/rad/thermal? What lightweight signed config/update concept is viable for Phase I?
-- Feasibility Determination: Edge pipeline latency/jitter bounds bench‑measured; plugin API realized (stubs + example RF plugin); initial power/thermal snapshots; signed‑config/update concept documented and emulated in bench loop.
+Objective 1: SPECTRA HPC-S feasibility (Modular sensor-compute architecture, Phase I RF instantiation)
+- R&D Questions: What modality-agnostic plugin interfaces are required (front-end, feature extractors, model containers)? What deterministic latency bounds are feasible on candidate SoC/FPGA under SWaP/rad/thermal? What lightweight signed config/update concept is viable for Phase I?
+- Feasibility Determination: Edge pipeline latency/jitter bounds bench-measured; plugin API realized (stubs + example RF plugin); initial power/thermal snapshots; signed-config/update concept documented and emulated in bench loop.
 
-Objective 2: Cross‑modal Space EW Catalog schema + edge slice feasibility
-- R&D Questions: What schema supports cross‑modal descriptors (RF, SAR/LIDAR/EO/IR/HSI) and observation/evidence products? What slice sizes/compression achieve onboard feasibility and manageable downlink bundles?
-- Feasibility Determination: Slice storage footprint, compression ratio, and retrieval latency characterized; downlink bundle sizes for alert/evidence reported; schema validated with at least two modality exemplars (design‑time), RF realized in Phase I.
+Objective 2: SPECTRA Edge DB feasibility (Cross-modal Space EW Catalog schema + edge slice feasibility)
+- R&D Questions: What schema supports cross-modal descriptors (RF, SAR/LIDAR/EO/IR/HSI) and observation/evidence products? What slice sizes/compression achieve onboard feasibility and manageable downlink bundles? How do observations and events flow through the Edge DB to update the catalog?
+- Feasibility Determination: Slice storage footprint, compression ratio, and retrieval latency characterized; downlink bundle sizes for alert/evidence reported; schema validated with at least two modality exemplars (design-time), RF realized in Phase I; observation-to-event pipeline documented.
 
-Objective 3: Payload‑in‑the‑loop simulation + HIL harness with EW attack injectors
-- R&D Questions: What simulation fidelity is sufficient for Phase I custody/latency insights? How do EWIRDB‑like/EMoP‑like generators and red‑team injectors drive realistic stress? What uncertainty calibration targets are attainable?
-- Feasibility Determination: Sim/HIL harness executes RF scenarios with EW attack injectors; AWG‑stimulated bench snapshots captured; uncertainty calibration curves (e.g., ECE/Brier) reported; stability demonstrated across scenario packs.
+Objective 3: SPECTRA Ground Processing CONOPS (Concept of Operations)
+- R&D Questions: What operational workflows enable SPECTRA Ground Processing to receive events/observations from spacecraft, disseminate to mission operations and SDA community via UDL, determine catalog updates based on SDA intelligence, and manage HPC-S model updates and training? What are the data flows, decision points, and integration touchpoints?
+- Feasibility Determination: Preliminary CONOPS document produced; operational workflows and data flows diagrammed; integration points with UDL and mission operations identified; model update and training pipeline conceptualized.
 
-Objective 4: Interfaces, operator digests, and integration readiness
-- R&D Questions: What modality‑agnostic schemas (summaries/evidence/health) and operator digest formats best support Phase II integration? What preliminary standards fit (e.g., CCSDS/BM‑C2) can be documented without Phase I compliance?
-- Feasibility Determination: Schemas validated via round‑trip examples; operator digest exemplars produced; preliminary standards‑fit notes compiled.
+Objective 4: Payload-in-the-loop simulation + HIL harness with EW attack injectors
+- R&D Questions: What simulation fidelity is sufficient for Phase I custody/latency insights? How do EWIRDB-like/EMoP-like generators and red-team injectors drive realistic stress? What uncertainty calibration targets are attainable?
+- Feasibility Determination: Sim/HIL harness executes RF scenarios with EW attack injectors; AWG-stimulated bench snapshots captured; uncertainty calibration curves (e.g., ECE/Brier) reported; stability demonstrated across scenario packs.
+
+Objective 5: Interfaces, operator digests, and integration readiness
+- R&D Questions: What modality-agnostic schemas (summaries/evidence/health) and operator digest formats best support Phase II integration? What preliminary standards fit (e.g., CCSDS/BM-C2) can be documented without Phase I compliance?
+- Feasibility Determination: Schemas validated via round-trip examples; operator digest exemplars produced; preliminary standards-fit notes compiled.
 
 ## Phase I Base (6 mo) Statement of Work (example)
-T1 — Kickoff + Feasibility Plan (M1): finalize objectives, simulation/HIL plans, dataset/signal scope.
-T2 — Architecture & Catalog Schema Trades (M2–M3): plugin interfaces; catalog schema + slice/compression trades.
-T3 — Simulation Harness + Scenario Packs (M3–M4): RF payload‑in‑the‑loop integration; EW attack injectors; uncertainty calibration plan.
-T4 — HIL Plan + Initial Bench Snapshots (M4–M5): AWG‑stimulated runs; timing/power/thermal snapshots; signed‑config emulation.
-T5 — Feasibility Indicators + Evidence Package (M5–M6): latency/jitter, calibration curves, slice viability, interface validation; trace capture for V&V.
-T6 — Phase II Design & Transition Readiness Outline (M6): prototype maturation plan; standards‑fit and integration roadmap.
+T1 — Kickoff + Feasibility Plan (M1): finalize objectives, simulation/HIL plans, dataset/signal scope; define three-tier architecture (HPC-S, Edge DB, Ground Processing) and observation-to-event data flows.
+T2 — Architecture & Catalog Schema Trades (M2–M3): SPECTRA HPC-S plugin interfaces; SPECTRA Edge DB catalog schema + slice/compression trades; SPECTRA Ground Processing CONOPS preliminary outline.
+T3 — Simulation Harness + Scenario Packs (M3–M4): RF payload-in-the-loop integration; EW attack injectors; uncertainty calibration plan; observation and event data flow validation.
+T4 — HIL Plan + Initial Bench Snapshots (M4–M5): AWG-stimulated runs; timing/power/thermal snapshots; signed-config emulation; observation-to-event pipeline testing.
+T5 — Feasibility Indicators + Evidence Package (M5–M6): latency/jitter, calibration curves, slice viability, interface validation; trace capture for V&V; three-tier architecture feasibility summary.
+T6 — Phase II Design & Transition Readiness Outline (M6): prototype maturation plan; standards-fit and integration roadmap; SPECTRA Ground Processing CONOPS refinement plan.
 
 ## Data, Evaluation, & Metrics (Phase I methods)
 - Latency/jitter bounds: on‑bench timing logs for read→process→emit; controlled load sweeps; stability across runs.
@@ -116,14 +125,15 @@ T6 — Phase II Design & Transition Readiness Outline (M6): prototype maturation
 - Alert timeline: detection→triage→geolocation latency distribution.
 - RPO (example) metric: relative nav decision latency and keep-out violation risk (sim-only).
 
-## Phase I feasibility indicators (evidence‑focused)
-- Edge pipeline latency and jitter bounds for feature extraction/triage on candidate SoC/FPGA (bench‑measured, repeatable).
-- Simulated end‑to‑end detection→triage→alert latency vs. ground‑loop baseline in controlled scenarios (report observed improvements with confidence bounds; no fixed % commitments in Phase I).
+## Phase I feasibility indicators (evidence-focused)
+- **SPECTRA HPC-S**: Edge pipeline latency and jitter bounds for feature extraction/triage on candidate SoC/FPGA (bench-measured, repeatable); observation-to-event processing pipeline validated.
+- **SPECTRA Edge DB**: Catalog slice feasibility (storage footprint, compression ratio, retrieval latency); schema validation for modality-agnostic products; downlink size for alert/evidence bundles; observation and event cataloging pipeline demonstrated.
+- **SPECTRA Ground Processing**: Preliminary CONOPS document; operational workflows and data flows diagrammed; integration points with UDL and mission operations identified.
+- **Integrated System**: Simulated end-to-end observation→event→alert latency vs. ground-loop baseline in controlled scenarios (report observed improvements with confidence bounds; no fixed % commitments in Phase I).
 - Power/thermal/SWaP: bench snapshots and modeled envelopes that close for selected configurations.
-- Uncertainty calibration (e.g., ECE/Brier) on synthetic + bench traces; false‑alert rates under red‑teamed simulated EW attack injectors.
-- Catalog slice feasibility: storage footprint, compression ratio, retrieval latency; schema validation for modality‑agnostic products; downlink size for alert/evidence bundles.
+- Uncertainty calibration (e.g., ECE/Brier) on synthetic + bench traces; false-alert rates under red-teamed simulated EW attack injectors.
 - HIL: deterministic read→process→emit loop with measured timing bounds; initial stability across scenario packs; trace capture for V&V.
-- Interfaces: modality‑agnostic schemas validated; preliminary fit to future standards (e.g., CCSDS/BM‑C2) documented without committing Phase I compliance.
+- Interfaces: modality-agnostic schemas validated; preliminary fit to future standards (e.g., CCSDS/BM-C2) documented without committing Phase I compliance.
 
 ## Phase II projections (alignment to AIS evaluator targets)
 - Decision latency: target >50% reduction vs. ground‑loop baseline in ops‑like simulations/bench‑in‑the‑loop.
@@ -132,12 +142,14 @@ T6 — Phase II Design & Transition Readiness Outline (M6): prototype maturation
 - Robustness/trust: maintain alert quality under simulated EW attack injectors; signed update/config pathway matured for flight‑like prototypes.
 
 ## Proposed Phase I final outcome
-By end of Phase I, SPECTRA delivers a coherent feasibility package for a reconfigurable sensor‑compute payload (Phase I RF instantiation) that produces uncertainty‑aware, downlink‑efficient products and grows a cross‑modal Space EW Catalog:
-- Feasibility study and trades: payload and compute selections; catalog slice viability; security/update pathway.
-- Preliminary CONOPS and architecture: end‑to‑end design for contested space operations; integration‑ready interface schemas.
-- M&S + HIL evidence: latency/power/thermal profiles; uncertainty calibration; robustness to simulated EW attack scenarios.
-- Evaluation dossier: traceable metrics demonstrating latency/workload improvements and custody gains; no safety‑invariant violations in stress tests.
-- Phase II transition plan: bench/flight‑like prototype maturation and limited over‑the‑air exercises, with a modality expansion path (e.g., SAR/EO/IR/HSI) without re‑architecture.
+By end of Phase I, SPECTRA delivers a coherent feasibility package for a three-tier architecture (SPECTRA HPC-S, SPECTRA Edge DB, SPECTRA Ground Processing) with an RF instantiation that produces uncertainty-aware, downlink-efficient products and grows a cross-modal Space EW Catalog:
+- **SPECTRA HPC-S Feasibility**: Modular sensor-compute payload architecture with modality-agnostic plugin interfaces; RF instantiation with deterministic latency bounds bench-measured; compute trade studies; security/update pathway.
+- **SPECTRA Edge DB Feasibility**: Cross-modal catalog schema with edge slice viability; observation and event cataloging pipeline; storage footprint and compression ratios characterized; downlink bundle efficiency demonstrated.
+- **SPECTRA Ground Processing CONOPS**: Preliminary operational concept; data flows from spacecraft to ground; dissemination to mission operations and SDA community via UDL; model update and training pipeline conceptualized.
+- **Preliminary Architecture and Interfaces**: End-to-end design for contested space operations; observation-to-event data flows documented; integration-ready interface schemas; modality-agnostic design for Phase II expansion.
+- **M&S + HIL evidence**: Latency/power/thermal profiles; uncertainty calibration; robustness to simulated EW attack scenarios; observation-to-event pipeline validation.
+- **Evaluation dossier**: Traceable metrics demonstrating latency/workload improvements and custody gains; no safety-invariant violations in stress tests.
+- **Phase II transition plan**: Bench/flight-like prototype maturation and limited over-the-air exercises, with a modality expansion path (e.g., SAR/EO/IR/HSI) without re-architecture; SPECTRA Ground Processing CONOPS refinement.
 
 ## Roles, workshare, and facilities (STTR‑compliant)
 - COSMIAC (UNM)

@@ -31,6 +31,7 @@
 | SDA     | Space Domain Awareness                               | Operational capability to detect, track, and characterize objects and activities in space.                                                        |
 | SIERO   | [Uncertainty gating method]                          | Approach for uncertainty-aware decision-making; gates autonomy decisions based on confidence thresholds.                                          |
 | SoC     | System-on-Chip                                       | Integrated circuit containing processor, memory, and I/O on a single chip; compact and power-efficient.                                           |
+| SOSA    | Sensor Open Systems Architecture                     | Open-standard framework for interoperable sensor systems and data integration, enabling modular and composable sensor networks.                   |
 | SWaP    | Size, Weight, and Power                              | Key constraints for space systems; refers to physical footprint, mass, and power consumption budgets.                                             |
 | TRL     | Technology Readiness Level                           | Scale (1–9) measuring maturity of a technology from concept to operational deployment.                                                            |
 | UQ      | Uncertainty Quantification                           | Methods for estimating and communicating confidence/reliability of predictions and measurements.                                                  |
@@ -50,16 +51,18 @@
 
 ## Key Concepts
 
-| Term                      | Definition                                                                                                                            |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| **Modality-Agnostic**     | Architecture or design that is independent of specific sensor types; supports RF, SAR, EO, IR, HSI, etc. through plugin interfaces.   |
-| **Edge Processing**       | Data processing performed on the spacecraft/payload rather than transmitted to ground; reduces latency and bandwidth.                 |
-| **Payload-in-the-Loop**   | Simulation methodology where the actual payload software/hardware is integrated into a simulation environment for validation.         |
-| **Red-Team Injectors**    | Simulated adversarial scenarios (e.g., jamming, spoofing, deception) used to stress-test system robustness.                           |
-| **Custody**               | Continuous tracking and awareness of a target's location and status; critical in contested/comms-denied environments.                 |
-| **Comms-Denied**          | Operational scenario where communication with ground is unavailable or severely limited; requires autonomous onboard decision-making. |
-| **Deterministic Latency** | Guaranteed maximum time from input to output; critical for real-time threat response.                                                 |
-| **Downlink Bundle**       | Compact package of alert, evidence, and metadata transmitted from spacecraft to ground; optimized for bandwidth constraints.          |
-| **Threat Descriptor**     | Parametric representation of a threat (emitter, behavior, signature); enables compact storage and cross-modal comparison.             |
+| Term                      | Definition                                                                                                                                                                                                                                          |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Modality-Agnostic**     | Architecture or design that is independent of specific sensor types; supports RF, SAR, EO, IR, HSI, etc. through plugin interfaces.                                                                                                                 |
+| **Edge Processing**       | Data processing performed on the spacecraft/payload rather than transmitted to ground; reduces latency and bandwidth.                                                                                                                               |
+| **Payload-in-the-Loop**   | Simulation methodology where the actual payload software/hardware is integrated into a simulation environment for validation.                                                                                                                       |
+| **Red-Team Injectors**    | Simulated adversarial scenarios (e.g., jamming, spoofing, deception) used to stress-test system robustness.                                                                                                                                         |
+| **Custody**               | Continuous tracking and awareness of a target's location and status; critical in contested/comms-denied environments.                                                                                                                               |
+| **Comms-Denied**          | Operational scenario where communication with ground is unavailable or severely limited; requires autonomous onboard decision-making.                                                                                                               |
+| **Deterministic Latency** | Guaranteed maximum time from input to output; critical for real-time threat response.                                                                                                                                                               |
+| **Downlink Bundle**       | Compact package of alert, evidence, and metadata transmitted from spacecraft to ground; optimized for bandwidth constraints.                                                                                                                        |
+| **Threat Descriptor**     | Parametric representation of a threat (emitter, behavior, signature); enables compact storage and cross-modal comparison.                                                                                                                           |
+| **Observation**           | Raw sensor data streams, frames, collects, or measurements directly from sensors (e.g., RF pulses, radar returns, imagery frames); unprocessed or minimally processed sensor output.                                                                |
+| **Event**                 | Processed output resulting from fusion, AI/ML, and analytical algorithms applied to observations; represents detected threats, behaviors, anomalies, or significant activities (e.g., threat alerts, emitter classifications, maneuver detections). |
 
 
