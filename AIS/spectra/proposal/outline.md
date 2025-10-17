@@ -48,13 +48,13 @@
    - Table 2 maps AIS requirements (integrated sensor-compute, multimodal fusion, reconfigurability, HPC-S, latency reduction, operator workload, custody, comms-denied resilience, unclassified Phase I, IA/classified readiness, transition/integration readiness) to solution elements.
 
 5) **1.03 Data, Evaluation, & Metrics**
-   - Data: synthetic RF scenes (EWIRDB-like parametric threat models via EMoP-like generation), lab/test data where available, simulated EW attack scenarios, bench traces, controlled load sweeps.
-   - Metrics: per-component (latency/jitter bounds, power/thermal/SWaP envelopes, uncertainty calibration via ECE/Brier, slice viability, interface conformance) and system-level (end-to-end detection→triage→alert latency, false-alert rates, robustness under stress, geolocation accuracy CEP50/CEP90).
+   - Data: synthetic RF scenes (EWIRDB-like parametric threat models via EMoP-like generation), lab/test data where available, simulated EW attack scenarios, bench traces, and performance characterization under varying operational conditions.
+   - Metrics: per-component (latency, power/thermal/SWaP characterization, uncertainty quantification, catalog slice viability, interface conformance) and system-level (end-to-end detection-to-alert latency, alert quality under stress, robustness to simulated threats).
    - Concrete scenario examples:
-     - Theater GPS jamming detection & geolocation: measure detection→geolocation alert latency and CEP accuracy across SNR/interferer dwell variations.
-     - GEO emissions characterization: detect unusual emissions/behavior changes; measure timeliness and false-alert rates under red-team injectors.
-     - RPO (sim-only): emissions-based proximity cueing and keep-out zone enforcement; log relative navigation/decision latency.
-   - Table 3: metrics/goals/methods for Payload, Catalog, M&S/HIL, Interfaces, and integrated system; includes latency/jitter, power/thermal, uncertainty calibration, robustness (EW attacks), catalog slice viability, and interface validation.
+     - Theater GPS jamming detection & geolocation: measure detection-to-alert latency and accuracy across varying signal conditions.
+     - GEO emissions characterization: detect unusual emissions/behavior changes; measure timeliness and alert quality under simulated threat scenarios.
+     - RPO (sim-only): emissions-based proximity cueing and keep-out zone enforcement; characterize decision latency.
+   - Table 3: metrics/goals/methods for Payload, Catalog, M&S/HIL, Interfaces, and integrated system; includes latency, power/thermal, uncertainty quantification, robustness assessment, catalog slice viability, and interface validation.
 
 6) **2.0 Phase I Technical Objectives**
    - Objective 1: SPECTRA HPC-S Feasibility (Modular Sensor-Compute Payload, RF instantiation) — R&D questions: What modality-agnostic plugin interfaces (front-end, feature extractors, model containers) are required? What deterministic latency bounds are feasible on candidate SoC/FPGA under SWaP/rad/thermal? What lightweight signed config/update concept is viable? How do observations flow through the HPC-S to generate events? Feasibility Determination: Edge pipeline latency/jitter bounds bench-measured; plugin API realized (stubs + example RF plugin); initial power/thermal snapshots; signed-config/update concept documented and emulated in bench loop; observation-to-event processing pipeline validated.
