@@ -73,14 +73,15 @@ Outputs include: literature/trade studies and architecture, preliminary CONOPS a
 - Example interface stub — OPIR↔RF cueing (documentation only in Phase I): define notional JSON/protobuf fields {obs_time, target_region, cue_type, confidence, validity, contact} to illustrate future cross-sensor tasking.
 
 ## Phase I activities and deliverables
-- Phase I focus: feasibility analysis for SPECTRA HPC-S and SPECTRA Edge DB, and CONOPS development for SPECTRA Ground Processing; exercise the RF instantiation while ensuring all designs (payload, catalog, HIL) are modality-agnostic and reusable for other sensors.
-- Literature and trade studies: passive RF payloads, reconfigurable/SDR patterns, edge compute under SWaP/rad/thermal, catalog slicing/compression, and assurance/monitoring.
-- Architecture and feasibility: heterogeneous compute trades; prioritized catalog slice feasibility; memory‑safe runtime pathway; security/update concepts.
+- Phase I focus: feasibility analysis for SPECTRA HPC-S and SPECTRA Edge DB, and CONOPS development for SPECTRA Ground Processing; exercise the RF instantiation while ensuring all designs (payload, catalog, HIL) are modality-agnostic and reusable for other sensors. Additional thrust: feasibility study and CONOPS for a comprehensive test harness for SPECTRA DB and HPC-S validation, including HIL simulation and adversarial signal emitter concepts for live testing.
+- Literature and trade studies: passive RF payloads, reconfigurable/SDR patterns, edge compute under SWaP/rad/thermal, catalog slicing/compression, assurance/monitoring, and test harness architectures.
+- Architecture and feasibility: heterogeneous compute trades; prioritized catalog slice feasibility; memory‑safe runtime pathway; security/update concepts; test harness architecture for comprehensive validation.
 - Payload‑in‑the‑loop M&S: synthetic EW scenes; custody/latency metrics; uncertainty calibration; ablation under comms‑degraded and maneuvering targets.
-- HIL plan and initial bench results: AWG‑stimulated scenarios with simulated EW attacks; latency thresholds and power/thermal snapshots; early robustness checks.
-- Preliminary CONOPS and diagrams: mission threads for contested/degraded comms; integration‑ready payload‑compute packaging.
-- Risk register with CTEs and mitigation plan; Phase II roadmap to a bench/flight‑like prototype and limited over‑the‑air exercises where permissible.
-- AIS Phase I Showcase assets: concise technical narrative, figures/plots, and traceable metrics.
+- HIL plan and initial bench results: AWG‑stimulated scenarios with simulated EW attacks; latency thresholds and power/thermal snapshots; early robustness checks; test harness framework design and initial validation.
+- Test harness feasibility and CONOPS: Define comprehensive test harness architecture for SPECTRA Edge DB and HPC-S; design HIL simulation framework; assess adversarial signal emitter concepts for live testing; produce test plan and CONOPS for bench and potential live testing.
+- Preliminary CONOPS and diagrams: mission threads for contested/degraded comms; integration‑ready payload‑compute packaging; test harness operational workflows.
+- Risk register with CTEs and mitigation plan; Phase II roadmap to a bench/flight‑like prototype and limited over‑the‑air exercises where permissible; adversarial emitter development roadmap.
+- AIS Phase I Showcase assets: concise technical narrative, figures/plots, and traceable metrics; test harness readiness assessment.
 
 ## Phase I Technical Objectives
 
@@ -100,17 +101,22 @@ Objective 4: Payload-in-the-loop simulation + HIL harness with EW attack injecto
 - R&D Questions: What simulation fidelity is sufficient for Phase I custody/latency insights? How do EWIRDB-like/EMoP-like generators and red-team injectors drive realistic stress? What uncertainty calibration targets are attainable?
 - Feasibility Determination: Sim/HIL harness executes RF scenarios with EW attack injectors; AWG-stimulated bench snapshots captured; uncertainty calibration curves (e.g., ECE/Brier) reported; stability demonstrated across scenario packs.
 
-Objective 5: Interfaces, operator digests, and integration readiness
+Objective 5: Test harness feasibility and CONOPS for SPECTRA DB and HPC-S
+- R&D Questions: What test harness architecture enables comprehensive validation of SPECTRA Edge DB and SPECTRA HPC-S? What HIL simulation capabilities are required? What adversarial signal emitter concepts are viable for live testing? How can the test harness support both bench-based and potential live testing scenarios?
+- Feasibility Determination: Test harness architecture documented; HIL simulation framework design completed; adversarial signal emitter concepts and feasibility assessed; test plan and CONOPS for bench and potential live testing produced; integration pathways with existing test facilities identified.
+
+Objective 6: Interfaces, operator digests, and integration readiness
 - R&D Questions: What modality-agnostic schemas (summaries/evidence/health) and operator digest formats best support Phase II integration? What preliminary standards fit (e.g., CCSDS/BM-C2) can be documented without Phase I compliance?
 - Feasibility Determination: Schemas validated via round-trip examples; operator digest exemplars produced; preliminary standards-fit notes compiled.
 
 ## Phase I Base (6 mo) Statement of Work (example)
-T1 — Kickoff + Feasibility Plan (M1): finalize objectives, simulation/HIL plans, dataset/signal scope; define three-tier architecture (HPC-S, Edge DB, Ground Processing) and observation-to-event data flows.
-T2 — Architecture & Catalog Schema Trades (M2–M3): SPECTRA HPC-S plugin interfaces; SPECTRA Edge DB catalog schema + slice/compression trades; SPECTRA Ground Processing CONOPS preliminary outline.
+T1 — Kickoff + Feasibility Plan (M1): finalize objectives, simulation/HIL plans, dataset/signal scope; define three-tier architecture (HPC-S, Edge DB, Ground Processing) and observation-to-event data flows; outline test harness requirements.
+T2 — Architecture & Catalog Schema Trades (M2–M3): SPECTRA HPC-S plugin interfaces; SPECTRA Edge DB catalog schema + slice/compression trades; SPECTRA Ground Processing CONOPS preliminary outline; test harness architecture preliminary design.
 T3 — Simulation Harness + Scenario Packs (M3–M4): RF payload-in-the-loop integration; EW attack injectors; uncertainty calibration plan; observation and event data flow validation.
 T4 — HIL Plan + Initial Bench Snapshots (M4–M5): AWG-stimulated runs; timing/power/thermal snapshots; signed-config emulation; observation-to-event pipeline testing.
-T5 — Feasibility Indicators + Evidence Package (M5–M6): latency/jitter, calibration curves, slice viability, interface validation; trace capture for V&V; three-tier architecture feasibility summary.
-T6 — Phase II Design & Transition Readiness Outline (M6): prototype maturation plan; standards-fit and integration roadmap; SPECTRA Ground Processing CONOPS refinement plan.
+T5 — Test Harness Feasibility and CONOPS (M4–M5): Define test harness architecture for comprehensive validation of SPECTRA Edge DB and HPC-S; design HIL simulation framework; assess adversarial signal emitter concepts for live testing; produce test plan and CONOPS for bench and potential live testing.
+T6 — Feasibility Indicators + Evidence Package (M5–M6): latency/jitter, calibration curves, slice viability, interface validation; trace capture for V&V; three-tier architecture feasibility summary; test harness readiness assessment.
+T7 — Phase II Design & Transition Readiness Outline (M6): prototype maturation plan; standards-fit and integration roadmap; SPECTRA Ground Processing CONOPS refinement plan; test harness and adversarial emitter development roadmap.
 
 ## Data, Evaluation, & Metrics (Phase I methods)
 - Latency/jitter bounds: on‑bench timing logs for read→process→emit; controlled load sweeps; stability across runs.
