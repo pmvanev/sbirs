@@ -121,18 +121,20 @@
 ---
 
 ### Content Mapping (Crosswalk)
-- Problem Context → 1.0; Scenario (contested space ops, comms-denied, multimodal threats) → 1.0; Figures 1–3 illustrate architecture, payload, and operator digest.
-- Innovation Modules → 1.01 subsections:
-  - Modular Sensor-Compute Payload → reconfigurable, deterministic latency, multimodal-ready; meets: Integrated Sensor-Compute, Reconfigurability, HPC-S, Latency Reduction.
-  - Cross-Modal Space Threat Catalog (initial EW focus) → edge slices, downlink efficiency, extensible schema; meets: Multimodal Fusion Support, Operator Workload Reduction, Comms-Denied Resilience.
-  - Payload-in-the-Loop M&S → sensor-agnostic harness, RF Phase I, multimodal Phase II; meets: Feasibility Validation, Robustness/Trust, Uncertainty Calibration.
-  - HIL Testing Framework → bench validation, timing/power/thermal; meets: Deterministic Latency, SWaP Efficiency, Security Readiness.
-  - Integration-Ready Interfaces → modality-agnostic schemas, standards fit; meets: Phase II Integration, Operator Trust, Transition Readiness.
+- Problem Context → 1.0; Scenario (contested space ops, comms-denied, diverse threats including RF/EW, kinetic, maneuver, signature anomalies) → 1.0; Figures 1–3 illustrate architecture, payload, and operator digest.
+- Core Subsystems & Phase I Initiatives → 1.0 Executive Summary:
+  - SPECTRA HPC-S (Modular Sensor-Compute Payload) → multimodal-ready plugin architecture, performance characterization, RF Phase I instantiation; meets: Integrated Sensor-Compute, Reconfigurability, HPC-S, Latency Reduction.
+  - SPECTRA Edge DB (Cross-Modal Space Threat Catalog) → edge slices, downlink efficiency, extensible schema, SOSA-compliant design; meets: Multimodal Fusion Support, Operator Workload Reduction, Comms-Denied Resilience.
+  - SPECTRA Ground Processing → CONOPS development, dissemination via UDL, exploration of specialized consumer integration (e.g., Welder's Arc); meets: Ground Integration, Model Management, Operational Readiness.
+  - Payload-in-the-Loop M&S with EW Attack Injectors → sensor-agnostic simulation harness, RF Phase I, multimodal Phase II; meets: Feasibility Validation, Robustness/Trust, Uncertainty Quantification.
+  - HIL Testing Framework and ModSim CONOPS → bench validation, performance characterization, robustness assessment; meets: Test Methodology Development, Security Readiness, Feasibility Validation.
+  - Integration-Ready Interfaces and Operator Digests → modality-agnostic schemas, preliminary interface design; meets: Phase II Integration, Operator Trust, Future Interoperability.
+  - Test Harness Feasibility and CONOPS → comprehensive validation architecture, HIL simulation framework, adversarial signal emitter concepts; meets: Validation Readiness, Live Testing Pathways.
 - Topic Compliance → 1.02 Table 2 explicitly maps AIS requirements to solution elements; includes unclassified Phase I compliance and classified Phase II readiness.
-- Evaluation Plan → 1.03 Table 3 defines metrics/methods/success criteria per component and system.
-- Technical Objectives → 2.0 enumerates six objectives with R&D questions and feasibility criteria aligned to modules and integration.
-- SoW & Schedule → 3.0 Tables 4–5 provide Base/Option tasks (T1–T10) and milestones.
-- Transition & Commercialization → 3.0 provides DoD/USSF pathway, engagements, dual-use markets, differentiation, risks, and revenue model; Table 9 timeline.
+- Evaluation Plan → 1.03 defines data sources, metrics, and scenario examples; emphasizes performance characterization and robustness assessment without over-committing to specific methodologies.
+- Technical Objectives → 2.0 enumerates eight objectives with R&D questions and feasibility criteria; Objective-to-Task Mapping shows Base SoW coverage of all objectives.
+- SoW & Schedule → 3.0 Tables 4–5 provide Base/Option tasks (T1–T8 Base, T9–T13 Option) with explicit objective mapping and logical task sequencing.
+- Transition & Commercialization → 3.0 provides DoD/USSF pathway, engagements, dual-use markets, differentiation, risks, and revenue model with SOSA/CCSDS/BM-C2 standards alignment; Table 9 timeline.
 - Organizational Capacity → Related Work (1.3), Key Personnel (2.0), Facilities/Equipment (4.0), and References (5.0) substantiate credibility and readiness.
 
 ---
