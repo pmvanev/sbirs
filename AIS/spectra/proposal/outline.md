@@ -1,9 +1,19 @@
 ## SPECTRA Proposal — Outline and Mapping Summary
 
 ### Executive Summary (What this proposal does)
-- Proposes SPECTRA, a three-tier, reconfigurable, modality-agnostic architecture for contested space operations: **(1) SPECTRA HPC-S** (onboard ML/AI/fusion compute with edge threat detection and multimodal sensor fusion), **(2) SPECTRA Edge DB** (onboard SOSA-compliant database maintaining updatable catalog slices), and **(3) SPECTRA Ground Processing** (ground-based data management and model training) to accelerate threat detection, triage, and decision-making in contested/comms-denied space operations.
-- Core subsystems: SPECTRA HPC-S (modular sensor-compute payload, plugin-based for RF/SAR/EO/IR/HSI; Phase I focuses on RF to establish deterministic latency and SWaP baselines), SPECTRA Edge DB (cross-modal Space Threat Catalog with edge slices, initial EW focus, multimodal-ready), SPECTRA Ground Processing (CONOPS for ground-based operations, dissemination, and model management), Payload-in-the-Loop M&S and HIL framework with attack injectors, Integration-Ready Interfaces, and Uncertainty-Aware Alert and Evidence Packaging.
-- Phase I validates feasibility for HPC-S and Edge DB via RF instantiation with simulation, HIL bench snapshots, latency/power/thermal profiling, and uncertainty calibration; develops CONOPS for Ground Processing. Establishes modality-agnostic plugin architecture and catalog schema to enable Phase II multimodal expansion (SAR/EO/IR/HSI) and integration with SDA community.
+- Proposes SPECTRA, a three-tier, reconfigurable, modality-agnostic architecture for contested space operations to accelerate threat detection, triage, and decision-making in contested/comms-denied space operations.
+
+**Core Subsystems:**
+- **(1) SPECTRA HPC-S** — Onboard ML/AI/fusion compute with edge threat detection and multimodal sensor fusion; modular sensor-compute payload with plugin-based architecture for RF/SAR/EO/IR/HSI.
+- **(2) SPECTRA Edge DB** — Onboard SOSA-compliant database maintaining updatable catalog slices; cross-modal Space Threat Catalog with edge slices and downlink-efficient products.
+- **(3) SPECTRA Ground Processing** — Ground-based data management, dissemination to mission operations and SDA community via UDL, catalog updates, and model training.
+
+**Phase I Main Initiatives:**
+- **Feasibility Studies for SPECTRA HPC-S and SPECTRA Edge DB** — RF instantiation to establish deterministic latency and SWaP baselines; simulation, HIL bench snapshots, latency/power/thermal profiling, and uncertainty calibration.
+- **CONOPS for SPECTRA Ground Processing** — Operational workflows for receiving events/observations, disseminating to mission operations and SDA community, determining catalog updates, and managing model training and updates.
+- **Test Harness Feasibility and CONOPS** — Comprehensive test harness architecture for SPECTRA DB and HPC-S validation; HIL simulation framework design; adversarial signal emitter concepts for live lab testing; test plan and CONOPS for bench and potential live testing.
+- **Modality-Agnostic Plugin Architecture and Catalog Schema** — Establishes extensible design and plugin interfaces to enable Phase II multimodal expansion (SAR/EO/IR/HSI) without re-architecture.
+- **Integration-Ready Interfaces and Evidence Packaging** — Modality-agnostic schemas for edge summaries, operator digests, evidence packaging, and preliminary standards alignment (CCSDS/BM-C2).
 
 ---
 
