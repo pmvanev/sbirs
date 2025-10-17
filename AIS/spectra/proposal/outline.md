@@ -23,14 +23,14 @@
    - Volume and Title: "Volume 2: Technical Volume"; Title: "SPECTRA: Sensor Processing at the Edge for Cognitive Threat Reconnaissance and Alert".
 
 2) **1.0 Description of Proposed Phase I Technical Effort**
-   - Problem: Current space EW systems suffer from high detection→classification latency, operator workload bottlenecks, and custody gaps in comms-denied conditions; single-modality sensors miss complementary threat signatures; ground-centric processing delays decisions.
-   - Scenario: Contested space operations with RF/EW threats, bandwidth constraints, and maneuvering targets across LEO/GEO/XGEO/cislunar; operators need rapid, uncertainty-aware alerts and multimodal fusion to maintain custody and confidence.
+   - Problem: Current space threat detection systems suffer from high detection→classification latency, operator workload bottlenecks, and custody gaps in comms-denied conditions; single-modality sensors (RF, SAR, EO, IR, HSI) miss complementary threat signatures; ground-centric processing delays decisions. Multimodal fusion at the edge is needed to accelerate threat detection and improve confidence across diverse sensor streams.
+   - Scenario: Contested space operations with diverse threats (RF/EW, kinetic, maneuver, signature anomalies), bandwidth constraints, and maneuvering targets across LEO/GEO/XGEO/cislunar; operators need rapid, uncertainty-aware alerts and multimodal fusion (RF/SAR/EO/IR/HSI) to maintain custody and confidence. Phase I focuses on RF/EW instantiation to establish architecture and baselines; Phase II expands to additional modalities and threat types.
    - Proposed Solution (five innovations):
-     - Modular Sensor-Compute Payload: reconfigurable, modality-agnostic plugin architecture for RF/SAR/EO/IR/HSI with deterministic latency and SWaP efficiency.
-     - Cross-Modal Space Threat Catalog: schema and edge slices for compact, downlink-efficient threat descriptors and observation products across modalities (initial EW focus, expandable to SAR/EO/IR/HSI).
+     - Modular Sensor-Compute Payload: reconfigurable, modality-agnostic plugin architecture for RF/SAR/EO/IR/HSI with deterministic latency and SWaP efficiency; SOSA-compliant design for interoperability.
+     - Cross-Modal Space Threat Catalog: SOSA-compliant schema and edge slices for compact, downlink-efficient threat descriptors and observation products across modalities (initial EW focus, expandable to SAR/EO/IR/HSI).
      - Payload-in-the-Loop M&S: sensor-agnostic simulation harness with synthetic threat scenes and red-team attack injectors (Phase I RF, Phase II multimodal).
      - HIL Testing Framework: AWG-stimulated bench validation with latency/power/thermal profiling and uncertainty calibration.
-     - Integration-Ready Interfaces: modality-agnostic schemas for edge summaries, operator digests, and future standards alignment (CCSDS/BM-C2).
+     - Integration-Ready Interfaces: modality-agnostic schemas for edge summaries, operator digests, and standards alignment (SOSA, CCSDS/BM-C2).
    - Figures/Tables: Figure 1 (system architecture, end-to-end flow). Table 1 (degree of innovation). Table 2 (topic/AIS requirement alignment).
    - Team: COSMIAC (RF front-end, edge ML, FPGA, radiation expertise) + IA (simulation, catalog, HIL orchestration, autonomy/AI background).
 
