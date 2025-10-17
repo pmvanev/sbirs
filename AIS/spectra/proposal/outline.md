@@ -67,20 +67,30 @@
    - Objective 8: Integrated Feasibility Assessment and Phase II Readiness — Synthesis of feasibility findings across HPC-S, Edge DB, Ground Processing CONOPS, M&S/HIL, Test Harness, and Interfaces; integrated feasibility summary; risk register with CTEs and mitigation plan; Phase II roadmap for multimodal expansion (SAR/EO/IR/HSI), prototype maturation, environmental testing, and validation pathways.
 
 7) **3.0 Phase I Statement of Work (Base and Option)**
+   - **Objective-to-Task Mapping (Base SoW):**
+     - Objective 1 (HPC-S Feasibility) ← T2, T4, T8
+     - Objective 2 (Edge DB Feasibility) ← T2, T3, T9
+     - Objective 3 (Ground Processing CONOPS) ← T2, T7
+     - Objective 4 (Payload-in-the-Loop M&S + HIL) ← T3, T4, T5
+     - Objective 5 (Interfaces & Operator Digests) ← T6, T10
+     - Objective 6 (Test Harness Feasibility & CONOPS) ← T5, T11
+     - Objective 7 (Robustness & Assurance) ← T4, T5, T12
+     - Objective 8 (Integrated Feasibility & Phase II Readiness) ← T6, T7
    - Table 4 (Base, 6 months):
      - T1 Kickoff + Feasibility Plan (M1): finalize objectives, simulation/HIL plans, dataset/signal scope; define three-tier architecture (HPC-S, Edge DB, Ground Processing) and observation-to-event data flows.
-     - T2 Architecture & Catalog Schema Trades (M2–M3): SPECTRA HPC-S plugin interfaces; SPECTRA Edge DB cross-modal threat catalog schema + slice/compression trades (initial EW focus, multimodal extensibility); SPECTRA Ground Processing CONOPS preliminary outline.
+     - T2 Architecture & Catalog Schema Trades (M2–M3): SPECTRA HPC-S plugin interfaces and compute architecture; SPECTRA Edge DB cross-modal threat catalog schema + slice/compression trades (initial EW focus, multimodal extensibility); SPECTRA Ground Processing CONOPS preliminary outline; observation-to-event data flow design.
      - T3 Simulation Harness + Scenario Packs (M3–M4): RF payload-in-the-loop integration leveraging IA's SDA/EW modsim expertise; synthetic RF scene generation; EW attack injectors; uncertainty quantification approach; observation and event data flow validation.
-     - T4 HIL Plan + Initial Bench Characterization (M4–M5): Bench validation runs; performance characterization (timing, power, thermal); signed-config emulation; observation-to-event pipeline testing.
-     - T5 Test Harness Feasibility and CONOPS (M4–M5): Define test harness architecture for comprehensive validation of SPECTRA Edge DB and HPC-S; design HIL simulation framework; assess adversarial signal emitter concepts for live testing; produce test plan and CONOPS for bench and potential live testing.
-     - T6 Feasibility Indicators + Evidence Package (M5–M6): Performance characterization, uncertainty quantification results, slice viability, interface validation; data capture for V&V; three-tier architecture feasibility summary; test harness readiness assessment.
-     - T7 Phase II Design & Transition Readiness Outline (M6): prototype maturation plan; standards-fit and integration roadmap; SPECTRA Ground Processing CONOPS refinement plan; test harness and adversarial emitter development roadmap.
+     - T4 HIL Plan + Initial Bench Characterization (M4–M5): Bench validation runs; performance characterization (timing, power, thermal); signed-config emulation; observation-to-event pipeline testing; robustness assessment under simulated threat scenarios.
+     - T5 Test Harness Feasibility and CONOPS (M4–M5): Define test harness architecture for comprehensive validation of SPECTRA Edge DB and HPC-S; design HIL simulation framework; assess adversarial signal emitter concepts for live testing; produce test plan and CONOPS for bench and potential live testing; robustness evaluation methodology.
+     - T6 Interface Design & Operator Digest Prototyping (M5–M6): Modality-agnostic schemas for edge summaries/evidence and health telemetry; operator digest exemplars; preliminary interface design notes; round-trip validation examples.
+     - T7 Feasibility Indicators + Evidence Package (M5–M6): Performance characterization, uncertainty quantification results, slice viability, interface validation; data capture for V&V; three-tier architecture feasibility summary; test harness readiness assessment.
+     - T8 Phase II Design & Transition Readiness Outline (M6): prototype maturation plan; interoperability and standards considerations; SPECTRA Ground Processing CONOPS refinement plan; test harness and adversarial emitter development roadmap; risk register with CTEs and mitigation plan.
    - Table 5 (Option, 6 months):
-     - T8 Advance Payload Compute Trades & Signed-Config Emulation: heterogeneous compute evaluation; rad-tolerant options; thermal throttling/graceful degradation.
-     - T9 Expand Catalog Slice Compression & Retrieval: advanced compression techniques; downlink bundle efficiency assessment.
-     - T10 Mid-Fidelity Operator Digest Prototyping: role/phase-aware UI exemplars; turnover clarity demonstrations.
-     - T11 Adversarial Signal Emitter Development: Feasibility study and preliminary design for adversarial RF signal emitters for live testing; integration concepts with test harness; safety and regulatory considerations.
-     - T12 Architecture & Security Planning for Phase II: memory-safe runtime pathway; on-orbit update concepts; interoperability and standards considerations.
+     - T9 Advance Payload Compute Trades & Signed-Config Emulation: heterogeneous compute evaluation; rad-tolerant options; thermal throttling/graceful degradation.
+     - T10 Expand Catalog Slice Compression & Retrieval: advanced compression techniques; downlink bundle efficiency assessment.
+     - T11 Mid-Fidelity Operator Digest Prototyping: role/phase-aware UI exemplars; turnover clarity demonstrations.
+     - T12 Adversarial Signal Emitter Development: Feasibility study and preliminary design for adversarial RF signal emitters for live testing; integration concepts with test harness; safety and regulatory considerations.
+     - T13 Architecture & Security Planning for Phase II: memory-safe runtime pathway; on-orbit update concepts; advanced interoperability pathways.
    - Forward look to Phase II: multimodal sensor fusion (SAR/EO/IR/HSI) under same payload-compute framework; prototype maturation with environmental testing; validation exercises; extended catalog integration and interoperability pathways.
 
 8) **1.3 Related Work**
@@ -99,7 +109,7 @@
       - HIL simulation and test toolchains for multimodal EW robustness evaluations; training products for operations and test teams; modality-agnostic framework enables rapid customization for new sensor types.
     - 3.1.5 Competitive differentiation: modality-agnostic plugin architecture (enables rapid sensor expansion), integrated sensor-compute-catalog flow (reduces latency and operator workload), uncertainty-aware edge decisions (improves trust and assurance), multimodal fusion at the edge (enhances detection confidence).
     - 3.1.6 Risks/mitigations: SWaP/thermal/radiation (derive budgets/margins, evaluate rad-tolerant compute, prototype thermal throttling); integration complexity (modular interfaces, memory-safe implementations, deterministic latency paths); data poisoning/robustness (onboard anomaly detection, signed models/configs, uncertainty-gated autonomy, simulation-based red-teaming).
-    - 3.1.7 Revenue/scaling model: Phase II quantitative targets (>50% decision latency reduction, ≥25% operator workload reduction, −25–35% custody gaps, −30–40% time-to-classification vs. baselines); Phase II/III maturation to flight-like prototype and limited over-the-air exercises; standards alignment (CCSDS/BM-C2) for broader adoption.
+    - 3.1.7 Revenue/scaling model: Phase II quantitative targets (>50% decision latency reduction, ≥25% operator workload reduction, −25–35% custody gaps, −30–40% time-to-classification vs. baselines); Phase II/III maturation to flight-like prototype and limited over-the-air exercises; standards alignment (SOSA, CCSDS/BM-C2) for broader adoption and interoperability.
     - Table 9: commercialization timeline milestones (Q4 2025 – Q4 2027).
 
 11) **4.0 Facilities/Equipment**
